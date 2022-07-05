@@ -1,5 +1,7 @@
 <p align="center">
-  <img height="150" src="./icon/icon.svg">
+  <a href="https://github.com/cptpiepmatz/great-on-deck-search">
+    <img height="150" src="./icon/icon.svg">
+  </a>
 </p>
 <h1 align="center">Show Great on Deck on Steam</h1>
 <h3 align="center">great-on-deck-search</h3>
@@ -10,7 +12,7 @@
 <br>
 
 <p align="center">
-  <a href="https://github.com/cptpiepmatz/pretty-ts-imports">
+  <a href="https://github.com/cptpiepmatz/great-on-deck-search">
     <img alt="Version" src="https://img.shields.io/github/manifest-json/v/cptpiepmatz/great-on-deck-search?style=for-the-badge"/>
   </a>
 </p>
