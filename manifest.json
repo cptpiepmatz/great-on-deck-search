@@ -1,6 +1,6 @@
 {
   "name": "Show Great on Deck on Steam",
-  "description": "See what Games are verified for the Steam Deck and which Medal they have on ProtonDB.",
+  "description": "See what Games are verified for the Steam Deck and which Medal they have on ProtonDB in the Steam Store.",
   "version": "1.0.0",
   "manifest_version": 3,
   "background": {
