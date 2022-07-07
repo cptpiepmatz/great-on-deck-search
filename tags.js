@@ -62,7 +62,11 @@ function tagItems() {
     dbTag.innerText = db.tier.toUpperCase();
     dbTag.classList.add("proton-db-tier-" + db.tier);
     dbTag.classList.add("col");
-    row.querySelector(".col.search_name.ellipsis").children[1].append(dbTag);
+    let dbLink = document.createElement("a");
+    dbLink.href = "https://www.protondb.com/app/" + appId;
+    dbLink.target = "_blank";
+    dbLink.appendChild(dbTag);
+    row.querySelector(".col.search_name.ellipsis").children[1].append(dbLink);
   });
 
   for (let row of rows) {
