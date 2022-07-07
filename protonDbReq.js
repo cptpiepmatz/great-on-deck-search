@@ -4,6 +4,8 @@ let cache = new Map();
 // make request to proton db and bounce the result back to the content script
 chrome.runtime.onConnect.addListener(port => {
   port.onMessage.addListener(({name, appId}) => {
+    if (!appId || appId.includes(",")) return;
+
     if (cache.has(appId)) {
       port.postMessage(cache.get(appId));
       return;
