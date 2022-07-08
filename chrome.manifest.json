@@ -10,8 +10,8 @@
     {
       "matches": ["https://store.steampowered.com/*"],
       "run_at": "document_idle",
-      "js": ["tags.js"],
-      "css": ["tags.css"]
+      "js": ["contentScript.js"],
+      "css": ["great_on_deck.css"]
     }
   ],
   "host_permissions": [
