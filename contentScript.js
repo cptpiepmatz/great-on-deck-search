@@ -30,6 +30,8 @@ const deckBadgeIcons = [
 
 const port = chrome.runtime.connect();
 
+const parser = new DOMParser();
+
 // inject ProtonDB font into the store page
 let font = document.createElement("style");
 font.innerText = "@import url('https://fonts.googleapis.com/css2?family=Rationale&display=swap');";
@@ -85,15 +87,20 @@ function handleSearchResults() {
    */
   function createProtonDbMedal(appId, tier) {
     if (!appId || !tier || tier === "pending") return null;
-    let dbTag = document.createElement("span");
-    dbTag.innerText = tier.toUpperCase();
-    dbTag.classList.add("proton-db-tier-" + tier);
-    dbTag.classList.add("col");
-    let dbLink = document.createElement("a");
-    dbLink.href = "https://www.protondb.com/app/" + appId;
-    dbLink.target = "_blank";
-    dbLink.appendChild(dbTag);
-    return dbLink;
+    let medalHTML = `
+      <a 
+        class="search-row-protondb" 
+        href="https://protondb.com/app/${appId}" 
+        target="_blank"
+      >
+        <span class="proton-db-tier-${tier} col">
+          ${tier.toUpperCase()}
+        </span>
+      </a>
+    `;
+    return parser
+      .parseFromString(medalHTML, "text/html")
+      .querySelector(".search-row-protondb");
   }
 
   /**
@@ -102,14 +109,14 @@ function handleSearchResults() {
    * @return {HTMLSpanElement}
    */
   function createDeckVerifiedIcon(cat) {
-    let verifiedTag = document.createElement("span");
-    let verifiedStatus = deckBadges[cat];
-    let verifiedImg = document.createElement("img");
-    verifiedImg.src = deckBadgeIcons[cat];
-    verifiedTag.appendChild(verifiedImg);
-    verifiedTag.classList.add("deck-" + verifiedStatus);
-    verifiedTag.classList.add("col");
-    return verifiedTag;
+    let verifiedHtml = `
+      <span class="search-row-deck deck-${deckBadges[cat]} col">
+        <img src="${deckBadgeIcons[cat]}" alt="${deckBadges[cat]}">
+      </span>
+    `;
+    return parser
+      .parseFromString(verifiedHtml, "text/html")
+      .querySelector(".search-row-deck");
   }
 }
 handleSearchResults();
@@ -126,7 +133,6 @@ function handleAppPage() {
   port.onMessage.addListener(({type, appId, data}) => {
     if (type !== MessageType.PROTON_DB) return;
     let {tier} = data;
-    let parser = new DOMParser();
     let protonHtml = `
     <div id="protondb-results" class="block">
       <div class="protondb-results title">
