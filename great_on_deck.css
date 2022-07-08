@@ -13,6 +13,10 @@
     height: 20px !important;
 }
 
+.search-row-deck {
+    height: 20px;
+}
+
 .protondb-search-medal {
     color: black;
     height: 20px !important;
@@ -20,7 +24,9 @@
     border-radius: 2px;
     padding: 1px 3px;
     box-sizing: border-box;
-    margin: 0 4px;
+    margin: 0 2px 0 0;
+    align-items: center;
+    display: inline-flex !important;
 }
 
 /* App Page Styles */
@@ -59,4 +65,13 @@
     font-weight: bold;
     padding: 2px 5px;
     border-radius: 2px;
+}
+
+/* Front Page Styles */
+.store_main_capsule .platforms {
+    display: flex;
+    align-items: center;
+}
+.store_main_capsule .platforms span {
+    display: flex;
 }
