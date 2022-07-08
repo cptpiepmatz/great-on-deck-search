@@ -39,6 +39,45 @@ let font = document.createElement("style");
 font.innerText = "@import url('https://fonts.googleapis.com/css2?family=Rationale&display=swap');";
 document.head.appendChild(font);
 
+/**
+ * Create the HTML element to display the ProtonDB medal.
+ * @param {string} tier Tier of the medal
+ * @return {HTMLAnchorElement|null}
+ */
+function createProtonDbMedal(appId, tier) {
+  if (!appId || !tier || tier === "pending") return null;
+  let medalHTML = `
+      <a 
+        class="search-row-protondb" 
+        href="https://protondb.com/app/${appId}" 
+        target="_blank"
+      >
+        <span class="protondb-search-medal protondb-tier-${tier} col">
+          ${tier.toUpperCase()}
+        </span>
+      </a>
+    `;
+  return parser
+    .parseFromString(medalHTML, "text/html")
+    .querySelector(".search-row-protondb");
+}
+
+/**
+ * Create the HTML element to display the Deck Verification.
+ * @param {0 | 1 | 2 | 3} cat
+ * @return {HTMLSpanElement}
+ */
+function createDeckVerifiedIcon(cat) {
+  let verifiedHtml = `
+      <span class="search-row-deck deck-${deckBadges[cat]} col">
+        <img src="${deckBadgeIcons[cat]}" alt="${deckBadges[cat]}">
+      </span>
+    `;
+  return parser
+    .parseFromString(verifiedHtml, "text/html")
+    .querySelector(".search-row-deck");
+}
+
 /** Handle pages that show search results. */
 function handleSearchResults() {
   // check if search results do exist and observe them
@@ -74,9 +113,9 @@ function handleSearchResults() {
       let row = appRows.get(appId);
       if (!row) return;
       let iconRow = row.querySelector(".col.search_name.ellipsis").children[1];
-      let deckVerifiedIcon = createDeckVerifiedIcon(deckVerified.resolved_category);
+      let deckVerifiedIcon = createDeckVerifiedIcon(deckVerified?.resolved_category);
       if (deckVerified) iconRow.append(deckVerifiedIcon);
-      let protonDbMedal = createProtonDbMedal(appId, protonDb.tier);
+      let protonDbMedal = createProtonDbMedal(appId, protonDb?.tier);
       if (protonDbMedal) iconRow.append(protonDbMedal);
     });
 
@@ -87,45 +126,6 @@ function handleSearchResults() {
         appId
       })
     }
-  }
-
-  /**
-   * Create the HTML element to display the ProtonDB medal.
-   * @param {string} tier Tier of the medal
-   * @return {HTMLAnchorElement|null}
-   */
-  function createProtonDbMedal(appId, tier) {
-    if (!appId || !tier || tier === "pending") return null;
-    let medalHTML = `
-      <a 
-        class="search-row-protondb" 
-        href="https://protondb.com/app/${appId}" 
-        target="_blank"
-      >
-        <span class="protondb-search-medal protondb-tier-${tier} col">
-          ${tier.toUpperCase()}
-        </span>
-      </a>
-    `;
-    return parser
-      .parseFromString(medalHTML, "text/html")
-      .querySelector(".search-row-protondb");
-  }
-
-  /**
-   * Create the HTML element to display the Deck Verification.
-   * @param {0 | 1 | 2 | 3} cat
-   * @return {HTMLSpanElement}
-   */
-  function createDeckVerifiedIcon(cat) {
-    let verifiedHtml = `
-      <span class="search-row-deck deck-${deckBadges[cat]} col">
-        <img src="${deckBadgeIcons[cat]}" alt="${deckBadges[cat]}">
-      </span>
-    `;
-    return parser
-      .parseFromString(verifiedHtml, "text/html")
-      .querySelector(".search-row-deck");
   }
 }
 handleSearchResults();
@@ -177,3 +177,41 @@ function handleAppPage() {
   port.postMessage({type: MessageType.PROTON_DB, appId});
 }
 handleAppPage();
+
+/** Handle store front page. */
+function handleFrontPage() {
+  // get the carousel items
+  // if they are initially empty, observer until they are filled
+  let carousel = document.querySelector(".carousel_items");
+  if (!carousel) return;
+  let observer = new MutationObserver(tagHeroes);
+  observer.observe(carousel, {childList: true, subtree: true});
+  if (carousel.children.length) tagHeroes();
+
+  function tagHeroes() {
+    observer.disconnect();
+
+    let appHeroes = new Map();
+
+    for (let item of carousel.children) {
+      let appId = item.dataset.dsAppid;
+      appHeroes.set(appId, item);
+    }
+
+    port.onMessage.addListener(({type, appId, data}) => {
+      if (type !== MessageType.PROTON_DB_AND_DECK_VERIFIED) return;
+      let hero = appHeroes.get(appId);
+      if (!hero) return;
+      let platforms = hero.querySelector(".platforms");
+      let verifiedIcon = createDeckVerifiedIcon(data.deckVerified.resolved_category);
+      if (verifiedIcon) platforms.prepend(verifiedIcon);
+      let protonMedal = createProtonDbMedal(appId, data.protonDb.tier);
+      if (protonMedal) platforms.prepend(protonMedal);
+    });
+
+    for (let [appId, hero] of appHeroes) {
+      port.postMessage({type: MessageType.PROTON_DB_AND_DECK_VERIFIED, appId});
+    }
+  }
+}
+handleFrontPage();
