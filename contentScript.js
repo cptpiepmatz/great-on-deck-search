@@ -28,8 +28,10 @@ const deckBadgeIcons = [
   "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/clans//39049601/82a3cff3038fbb4c36fabb5dd79540b23fa9a4d4.png"
 ];
 
+/** Port used to connect with background service. */
 const port = chrome.runtime.connect();
 
+/** DOM parser for creating elements. */
 const parser = new DOMParser();
 
 // inject ProtonDB font into the store page
@@ -39,6 +41,7 @@ document.head.appendChild(font);
 
 /** Handle pages that show search results. */
 function handleSearchResults() {
+  // check if search results do exist and observe them
   let searchResultsElement = document.getElementById("search_results");
   if (!searchResultsElement) return;
   const observer = new MutationObserver(tagSearchResults);
@@ -50,16 +53,21 @@ function handleSearchResults() {
    * This also makes sure that only rows get marked, that aren't already.
    */
   function tagSearchResults() {
-    let rows = document.querySelectorAll("a.search_result_row:not(.tagged-medal-and-verification)");
+    // select all untagged rows
+    let rows = document.querySelectorAll(
+      "a.search_result_row:not(.tagged-medal-and-verification)"
+    );
     rows.forEach(row => row.classList.add("tagged-medal-and-verification"));
     if (!rows) return;
 
+    // extract app ID per row
     let appRows = new Map();
     for (let row of rows) {
       let appId = row.dataset.dsAppid;
       appRows.set(appId, row);
     }
 
+    // when background service responds with data, display it
     port.onMessage.addListener(({type, appId, data}) => {
       if (type !== MessageType.PROTON_DB_AND_DECK_VERIFIED) return;
       let {protonDb, deckVerified} = data;
@@ -72,6 +80,7 @@ function handleSearchResults() {
       if (protonDbMedal) iconRow.append(protonDbMedal);
     });
 
+    // request data from background service
     for (let [appId, row] of appRows) {
       port.postMessage({
         type: MessageType.PROTON_DB_AND_DECK_VERIFIED,
@@ -121,35 +130,49 @@ function handleSearchResults() {
 }
 handleSearchResults();
 
+/** Handle app store pages. */
 function handleAppPage() {
+  // make sure the game metadata is available,
+  // all operations will take place in it
   let gameMetaData = document.querySelector(".game_meta_data");
   if (!gameMetaData) return;
   let verifiedResults = document.querySelector("[data-featuretarget='deck-verified-results']")
   if (verifiedResults) {
+    // when the page has steam deck verification details, put them at the top
     verifiedResults.remove();
     gameMetaData.children[0].prepend(verifiedResults);
   }
 
+  // upon receiving the ProtonDB data from the background service, place a block
+  // with the medal
   port.onMessage.addListener(({type, appId, data}) => {
     if (type !== MessageType.PROTON_DB) return;
     let {tier} = data;
     let protonHtml = `
-    <div id="protondb-results" class="block">
-      <div class="protondb-results title">
-        <img src="https://www.protondb.com/sites/protondb/images/site-logo.svg"></img>
-        <span class="protondb-logo protondb-logo-proton">proton</span>
-        <span class="protondb-logo protondb-logo-db">db</span>
-      </div>
-      <span class="protondb-results medal protondb-tier-${tier}">
-        ${tier.toUpperCase()}
-      </span>
-    </div>
-  `;
+      <a 
+        id="protondb-results" 
+        href="https://protondb.com/app/${appId}" 
+        target="_blank"
+      >
+        <div class="block">
+          <div class="protondb-results title">
+            <img src="https://www.protondb.com/sites/protondb/images/site-logo.svg"></img>
+            <span class="protondb-logo protondb-logo-proton">proton</span>
+            <span class="protondb-logo protondb-logo-db">db</span>
+          </div>
+          <span class="protondb-results medal protondb-tier-${tier}">
+            ${tier.toUpperCase()}
+          </span>
+        </div>
+      </a> 
+    `;
     let protonElement = parser
       .parseFromString(protonHtml, "text/html")
       .getElementById("protondb-results");
     gameMetaData.children[0].prepend(protonElement);
   });
+
+  // pull app ID from url and request ProtonDB data
   let {appId} = document.location.pathname.match(/\/(?<appId>\d+)\/[^/]+\//).groups;
   port.postMessage({type: MessageType.PROTON_DB, appId});
 }
