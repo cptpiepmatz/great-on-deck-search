@@ -11,7 +11,7 @@
       "matches": ["https://store.steampowered.com/*"],
       "run_at": "document_idle",
       "js": ["contentScript.js"],
-      "css": ["tags.css"]
+      "css": ["great_on_deck.css"]
     }
   ],
   "permissions": [
