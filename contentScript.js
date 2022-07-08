@@ -93,7 +93,7 @@ function handleSearchResults() {
         href="https://protondb.com/app/${appId}" 
         target="_blank"
       >
-        <span class="proton-db-tier-${tier} col">
+        <span class="protondb-search-medal protondb-tier-${tier} col">
           ${tier.toUpperCase()}
         </span>
       </a>
