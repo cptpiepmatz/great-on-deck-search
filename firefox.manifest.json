@@ -1,0 +1,27 @@
+{
+  "name": "Show Great on Deck on Steam",
+  "description": "See what Games are verified for the Steam Deck and which Medal they have on ProtonDB in the Steam Store.",
+  "version": "1.1.0",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://store.steampowered.com/*"],
+      "run_at": "document_idle",
+      "js": ["contentScript.js"],
+      "css": ["great_on_deck.css"]
+    }
+  ],
+  "permissions": [
+    "https://store.steampowered.com/*",
+    "https://www.protondb.com/app/*"
+  ],
+  "icons": {
+    "16": "icon/icon16.png",
+    "32": "icon/icon32.png",
+    "48": "icon/icon48.png",
+    "128": "icon/icon128.png"
+  }
+}

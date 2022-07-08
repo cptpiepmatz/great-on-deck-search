@@ -1,0 +1,77 @@
+/* General Styles */
+.protondb-tier-borked { background-color: #FF0000 }
+.protondb-tier-bronze { background-color: #CD7F32 }
+.protondb-tier-silver { background-color: #A6A6A6 }
+.protondb-tier-gold { background-color: #CFB53B }
+.protondb-tier-platinum { background-color: #B4C7DC }
+
+/* Search Result Styles */
+.deck-unknown img,
+.deck-unsupported img,
+.deck-playable img,
+.deck-verified img {
+    height: 20px !important;
+}
+
+.search-row-deck {
+    height: 20px;
+}
+
+.protondb-search-medal {
+    color: black;
+    height: 20px !important;
+    font-weight: bold;
+    border-radius: 2px;
+    padding: 1px 3px;
+    box-sizing: border-box;
+    margin: 0 2px 0 0;
+    align-items: center;
+    display: inline-flex !important;
+}
+
+/* App Page Styles */
+.protondb-logo-proton,
+.protondb-logo-db {
+    font-family: "Rationale", sans-serif;
+    font-weight: 600;
+}
+.protondb-logo-proton {
+    color: white
+}
+.protondb-logo-db {
+    color: rgb(207, 181, 59)
+}
+
+.protondb-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.protondb-results.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.protondb-results {
+    font-size: 40px;
+}
+.protondb-results img {
+    height: 50px;
+}
+.protondb-results.medal {
+    margin-top: 10px;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 2px;
+}
+
+/* Front Page Styles */
+.store_main_capsule .platforms {
+    display: flex;
+    align-items: center;
+}
+.store_main_capsule .platforms span {
+    display: flex;
+}
