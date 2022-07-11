@@ -36,6 +36,7 @@ So you do have to install this manually.
 
 1. Download the [files from this repo](https://github.com/cptpiepmatz/great-on-deck-search/archive/refs/heads/main.zip)
 2. Unpack the files in a directory of your choice, just make sure that you need these files as long you want to use the extension
-3. Go to `chrome://extensions/` in your browser (this should also work in chrome-based browsers)
-4. Select *Load unpacked* and select your directory with the unpacked files
-5. And you're done!
+3. Rename either chrome or firefox manifest file to `manifest.json` depending on your browser of choice.
+4. Go to `chrome://extensions/` in your browser (this should also work in chrome-based browsers)
+5. Select *Load unpacked* and select your directory with the unpacked files
+6. And you're done!
