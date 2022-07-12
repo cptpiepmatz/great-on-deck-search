@@ -132,29 +132,40 @@ handleSearchResults();
 
 /** Handle app store pages. */
 function handleAppPage() {
-  // make sure the game metadata is available,
-  // all operations will take place in it
-  let gameMetaData = document.querySelector(".game_meta_data");
-  if (!gameMetaData) return;
-  let verifiedResults = document.querySelector("[data-featuretarget='deck-verified-results']")
-  if (verifiedResults) {
-    // when the page has steam deck verification details, put them at the top
-    verifiedResults.remove();
-    gameMetaData.children[0].prepend(verifiedResults);
-  }
+  if (!document.location.pathname.includes("/app/")) return;
 
-  // upon receiving the ProtonDB data from the background service, place a block
-  // with the medal
-  port.onMessage.addListener(({type, appId, data}) => {
-    if (type !== MessageType.PROTON_DB) return;
-    let {tier} = data;
-    let protonHtml = `
-      <a 
-        id="protondb-results" 
-        href="https://protondb.com/app/${appId}" 
-        target="_blank"
-      >
-        <div class="block">
+  // pull the App ID from the URL
+  let {appId} = document.location.pathname.match(/\/(?<appId>\d+)\/[^/]+\//).groups;
+
+  /**
+   * Update the meta data sidebar on the right side of the page.
+   *
+   * Include a ProtonDB medal and move the Deck Verification up.
+   */
+  function updateGameMetaSidebar() {
+    // make sure the game metadata is available,
+    // all operations will take place in it
+    let gameMetaData = document.querySelector(".game_meta_data");
+    if (!gameMetaData) return;
+    let verifiedResults = document.querySelector("[data-featuretarget='deck-verified-results']")
+    if (verifiedResults) {
+      // when the page has steam deck verification details, put them at the top
+      verifiedResults.remove();
+      gameMetaData.children[0].prepend(verifiedResults);
+    }
+
+    // upon receiving the ProtonDB data from the background service, place a block
+    // with the medal
+    port.onMessage.addListener(({type, appId, data}) => {
+      if (type !== MessageType.PROTON_DB) return;
+      let {tier} = data;
+      let protonHtml = `
+      <div class=block responsive_apppage_details_right">
+        <a 
+          id="protondb-results" 
+          href="https://protondb.com/app/${appId}" 
+          target="_blank"
+        >
           <div class="protondb-results title">
             <img src="https://www.protondb.com/sites/protondb/images/site-logo.svg"></img>
             <span class="protondb-logo protondb-logo-proton">proton</span>
@@ -163,17 +174,48 @@ function handleAppPage() {
           <span class="protondb-results medal protondb-tier-${tier}">
             ${tier.toUpperCase()}
           </span>
-        </div>
-      </a> 
+        </a> 
+      </div>
     `;
-    let protonElement = parser
-      .parseFromString(protonHtml, "text/html")
-      .getElementById("protondb-results");
-    gameMetaData.children[0].prepend(protonElement);
-  });
+      let protonElement = parser
+        .parseFromString(protonHtml, "text/html")
+        .querySelector("div");
+      gameMetaData.prepend(protonElement);
+    });
+  }
+  updateGameMetaSidebar();
 
-  // pull app ID from url and request ProtonDB data
-  let {appId} = document.location.pathname.match(/\/(?<appId>\d+)\/[^/]+\//).groups;
+  /**
+   * Update the navigation buttons on top of the page with a button for ProtonDB.
+   *
+   * This should make sure that the SteamDB extension does not find conflicts.
+   */
+  function prependNavigationButton() {
+    let navbar = document.querySelector(".apphub_OtherSiteInfo");
+    if (!navbar) return;
+    let buttonHtml = `
+      <a 
+        rel="noopener" 
+        class="btnv6_blue_hoverfade btn_medium protondb-nav-button" 
+        href="https://protondb.com/app/${appId}"
+        target="_blank"
+      >
+        <span data-tooltip-text="View on ProtonDB">
+          <img 
+            class="ico16" 
+            src="https://www.protondb.com/sites/protondb/images/site-logo.svg"
+          >
+        </span>
+      </a>
+    `;
+    let button = parser
+      .parseFromString(buttonHtml, "text/html")
+      .querySelector("a");
+    navbar.prepend(button);
+  }
+  prependNavigationButton();
+
+  // request ProtonDB data
   port.postMessage({type: MessageType.PROTON_DB, appId});
 }
 handleAppPage();

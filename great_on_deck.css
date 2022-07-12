@@ -30,6 +30,18 @@
 }
 
 /* App Page Styles */
+.apphub_OtherSiteInfo {
+    display: flex;
+    gap: 4px;
+}
+.protondb-nav-button {
+    order: -5;
+}
+.protondb-nav-button img {
+    filter: brightness(0) invert(1);
+    background: none;
+}
+
 .protondb-logo-proton,
 .protondb-logo-db {
     font-family: "Rationale", sans-serif;
