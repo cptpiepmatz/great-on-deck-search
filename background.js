@@ -2,7 +2,8 @@
 const MessageType = {
   PROTON_DB: "protonDb",
   DECK_VERIFIED: "deckVerified",
-  PROTON_DB_AND_DECK_VERIFIED: "protonDb_and_deckVerified"
+  SD_HQ: "steamDeckHQ",
+  ALL: "all"
 }
 
 /**
@@ -16,6 +17,9 @@ const protonDbCache = new Map();
  * @type {Map<string, null | {resolved_category: 0 | 1 | 2 | 3}>}
  */
 const deckVerifiedCache = new Map();
+
+/** Cache for the Steam Deck HQ game review ratings. */
+const sdhqRatingCache = new Map();
 
 /**
  * Fetches ProtonDB entries.
@@ -57,6 +61,27 @@ async function fetchDeckVerified(appId) {
   }
 }
 
+/**
+ * Fetches Steam Deck HQ game review ratings.
+ * @param {string} appId ID of the app to fetch
+ * @return {Promise<{acf: {sdhq_rating: number}, link: string, title: {rendered: string}} | null>}
+ */
+async function fetchSteamDeckHQRating(appId) {
+  if (!appId) return null;
+  if (sdhqRatingCache.has(appId)) return sdhqRatingCache.get(appId);
+  let res = await fetch(`https://steamdeckhq.com/wp-json/wp/v2/game-reviews/?meta_key=steam_app_id&meta_value=${appId}&_fields=title,acf.sdhq_rating,link`);
+  switch (res.ok) {
+    case false:
+      sdhqRatingCache.set(appId, null);
+      return null;
+    case true:
+      let json = await res.json();
+      let data = json[0] ?? null;
+      sdhqRatingCache.set(appId, data);
+      return data;
+  }
+}
+
 chrome.runtime.onConnect.addListener(port => {
   port.onMessage.addListener(async ({type, appId}) => {
     switch (type) {
@@ -72,13 +97,20 @@ chrome.runtime.onConnect.addListener(port => {
           appId,
           data: await fetchDeckVerified(appId)
         });
-      case MessageType.PROTON_DB_AND_DECK_VERIFIED:
+      case MessageType.SD_HQ:
+        return port.postMessage({
+          type,
+          appId,
+          data: await fetchSteamDeckHQRating(appId)
+        });
+      case MessageType.ALL:
         return port.postMessage({
           type,
           appId,
           data: {
             protonDb: await fetchProtonDb(appId),
-            deckVerified: await fetchDeckVerified(appId)
+            deckVerified: await fetchDeckVerified(appId),
+            sdhq: await fetchSteamDeckHQRating(appId)
           }
         });
       default: console.error(new Error(`${type} unknown`));

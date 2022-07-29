@@ -2,7 +2,7 @@
 const MessageType = {
   PROTON_DB: "protonDb",
   DECK_VERIFIED: "deckVerified",
-  PROTON_DB_AND_DECK_VERIFIED: "protonDb_and_deckVerified"
+  ALL: "all"
 }
 
 /** Names of the Deck Verification. */
@@ -108,8 +108,8 @@ function handleSearchResults() {
 
     // when background service responds with data, display it
     port.onMessage.addListener(({type, appId, data}) => {
-      if (type !== MessageType.PROTON_DB_AND_DECK_VERIFIED) return;
-      let {protonDb, deckVerified} = data;
+      if (type !== MessageType.ALL) return;
+      let {protonDb, deckVerified, sdhq} = data;
       let row = appRows.get(appId);
       if (!row) return;
       let iconRow = row.querySelector(".col.search_name.ellipsis").children[1];
@@ -122,7 +122,7 @@ function handleSearchResults() {
     // request data from background service
     for (let [appId, row] of appRows) {
       port.postMessage({
-        type: MessageType.PROTON_DB_AND_DECK_VERIFIED,
+        type: MessageType.ALL,
         appId
       })
     }
@@ -241,7 +241,7 @@ function handleFrontPage() {
     }
 
     port.onMessage.addListener(({type, appId, data}) => {
-      if (type !== MessageType.PROTON_DB_AND_DECK_VERIFIED) return;
+      if (type !== MessageType.ALL) return;
       let hero = appHeroes.get(appId);
       if (!hero) return;
       let platforms = hero.querySelector(".platforms");
@@ -252,7 +252,7 @@ function handleFrontPage() {
     });
 
     for (let [appId, hero] of appHeroes) {
-      port.postMessage({type: MessageType.PROTON_DB_AND_DECK_VERIFIED, appId});
+      port.postMessage({type: MessageType.ALL, appId});
     }
   }
 }
