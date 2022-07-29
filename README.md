@@ -13,10 +13,10 @@
 
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/show-great-on-deck-on-ste/olagniaikhbmpdgghoifgloijcndfled">
-    <img alt="Chrome Version" src="https://img.shields.io/github/manifest-json/v/cptpiepmatz/great-on-deck-search?filename=chrome.manifest.json&label=Chrome%20Version&logo=google-chrome&style=for-the-badge"/>
+    <img alt="Chrome Web Store Version" src="https://img.shields.io/chrome-web-store/v/olagniaikhbmpdgghoifgloijcndfled?logo=google-chrome&style=for-the-badge"/>
   </a>
   <a href="https://addons.mozilla.org/firefox/addon/show-great-on-deck-on-steam/">
-    <img alt="Firefox Version" src="https://img.shields.io/github/manifest-json/v/cptpiepmatz/great-on-deck-search?color=orange&filename=firefox.manifest.json&label=Firefox%20Version&logo=firefox&style=for-the-badge"/>
+    <img alt="Mozilla Add-On Version" src="https://img.shields.io/amo/v/show-great-on-deck-on-steam?color=orange&logo=firefox&style=for-the-badge"/>
   </a>
 </p>
 
