@@ -205,7 +205,6 @@ function handleAppPage() {
             ></img>
             <div class="sdhq-separator"></div>
             <picture class="sdhq-author-avatar" data-tooltip-text="Reviewed By: ${rating.author_meta.display_name}">
-              <source srcset="">
               <source srcset="${avatar?.mpp_avatar.full}">
               <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/cropped-sdhq-icon.png">
             </picture>
