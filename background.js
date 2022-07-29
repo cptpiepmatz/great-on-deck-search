@@ -56,11 +56,12 @@ async function fetchProtonDb(appId) {
  * @return {Promise<{resolved_category: (0|1|2|3)}|null>}
  */
 async function fetchDeckVerified(appId) {
-  return await cachedFetch(
+  let data = await cachedFetch(
     deckVerifiedCache,
     appId,
     `https://www.protondb.com/proxy/steam/deck-verified?nAppID=${appId}`
   );
+  return data.results;
 }
 
 /**
