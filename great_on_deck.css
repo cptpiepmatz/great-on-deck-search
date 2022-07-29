@@ -79,6 +79,40 @@
     border-radius: 2px;
 }
 
+.sdhq-logo {
+    display: flex;
+    justify-content: center;
+}
+.sdhq-logo img {
+    width: 220px;
+}
+.sdhq-review-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.sdhq-review-row .sdhq-star-rating {
+    height: 40px;
+}
+.sdhq-author-avatar * {
+    height: 40px;
+    border-radius: 50%;
+}
+.sdhq-separator {
+    height: 38px;
+    width: 2px;
+    background-color: white;
+    border-radius: 1px;
+}
+.sdhq-nav-button {
+    order: -7;
+}
+.sdhq-nav-button img {
+    filter: brightness(0) invert(1);
+    background: none;
+}
+
 /* Front Page Styles */
 .store_main_capsule .platforms {
     display: flex;

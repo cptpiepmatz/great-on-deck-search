@@ -157,8 +157,8 @@ function handleAppPage() {
     // upon receiving the ProtonDB data from the background service, place a block
     // with the medal
     port.onMessage.addListener(({type, appId, data}) => {
-      if (type !== MessageType.PROTON_DB) return;
-      let {tier} = data;
+      if (type !== MessageType.ALL) return;
+      let {tier} = data.protonDb;
       let protonHtml = `
       <div class=block responsive_apppage_details_right">
         <a 
@@ -181,6 +181,42 @@ function handleAppPage() {
         .parseFromString(protonHtml, "text/html")
         .querySelector("div");
       gameMetaData.prepend(protonElement);
+
+      let {rating, avatar} = data.sdhq;
+      if (!rating) return;
+      let cats = rating.acf.sdhq_rating_categories;
+      let sdhqHtml = `
+      <div class=block responsive_apppage_details_right">
+        <a href="${rating.link}">
+          <div class="sdhq-logo">
+            <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/sdhq-logo.svg"></img>
+          </div>
+          <div class="sdhq-review-row">
+            <img 
+              class="sdhq-star-rating" 
+              src="https://steamdeckhq.com/wp-content/uploads/2022/06/rating-${rating.acf.sdhq_rating}-star.svg"
+              data-tooltip-text="
+                Performance: ${cats.performance}; 
+                Visuals: ${cats.visuals};
+                Stability: ${cats.stability};
+                Controls: ${cats.controls};
+                Battery: ${cats.battery};
+              "
+            ></img>
+            <div class="sdhq-separator"></div>
+            <picture class="sdhq-author-avatar" data-tooltip-text="Reviewed By: ${rating.author_meta.display_name}">
+              <source srcset="">
+              <source srcset="${avatar?.mpp_avatar.full}">
+              <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/cropped-sdhq-icon.png">
+            </picture>
+          </div>
+        </a>
+      </div>
+      `;
+      let sdhqElement = parser
+        .parseFromString(sdhqHtml, "text/html")
+        .querySelector("div");
+      gameMetaData.prepend(sdhqElement);
     });
   }
   updateGameMetaSidebar();
@@ -193,7 +229,7 @@ function handleAppPage() {
   function prependNavigationButton() {
     let navbar = document.querySelector(".apphub_OtherSiteInfo");
     if (!navbar) return;
-    let buttonHtml = `
+    let protonDbButtonHtml = `
       <a 
         rel="noopener" 
         class="btnv6_blue_hoverfade btn_medium protondb-nav-button" 
@@ -208,15 +244,40 @@ function handleAppPage() {
         </span>
       </a>
     `;
-    let button = parser
-      .parseFromString(buttonHtml, "text/html")
+    let protonDbButton = parser
+      .parseFromString(protonDbButtonHtml, "text/html")
       .querySelector("a");
-    navbar.prepend(button);
+    navbar.prepend(protonDbButton);
+
+    port.onMessage.addListener(({type, appId, data}) => {
+      if (type !== MessageType.ALL) return;
+      if (!data.sdhq?.rating) return;
+      let sdhqButtonHtml = `
+      <a 
+        rel="noopener" 
+        class="btnv6_blue_hoverfade btn_medium sdhq-nav-button" 
+        href="${data.sdhq.rating.link}"
+        target="_blank"
+      >
+        <span data-tooltip-text="View on Steam Deck HQ">
+          <img 
+            class="ico16" 
+            style="width: inherit"
+            src="https://steamdeckhq.com/wp-content/uploads/2022/06/sdhq-logo.svg"
+          >
+        </span>
+      </a>
+    `;
+      let sdhqDbButton = parser
+        .parseFromString(sdhqButtonHtml, "text/html")
+        .querySelector("a");
+      navbar.prepend(sdhqDbButton);
+    });
   }
   prependNavigationButton();
 
   // request ProtonDB data
-  port.postMessage({type: MessageType.PROTON_DB, appId});
+  port.postMessage({type: MessageType.ALL, appId});
 }
 handleAppPage();
 
