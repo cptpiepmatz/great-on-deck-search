@@ -187,7 +187,7 @@ function handleAppPage() {
       let cats = rating.acf.sdhq_rating_categories;
       let sdhqHtml = `
       <div class=block responsive_apppage_details_right">
-        <a href="${rating.link}">
+        <a href="${rating.link}" target="_blank">
           <div class="sdhq-logo">
             <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/sdhq-logo.svg"></img>
           </div>
