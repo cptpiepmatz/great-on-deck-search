@@ -117,6 +117,31 @@ function handleSearchResults() {
       if (deckVerified) iconRow.append(deckVerifiedIcon);
       let protonDbMedal = createProtonDbMedal(appId, protonDb?.tier);
       if (protonDbMedal) iconRow.append(protonDbMedal);
+
+      if (!data.sdhq || !data.sdhq.rating) return;
+      let releasedRow = row.querySelector(".search_released");
+      if (releasedRow) {
+
+        let dateText = releasedRow.innerText;
+        if (dateText) {
+          releasedRow.innerText = "";
+          let dateDiv = document.createElement("div");
+          dateDiv.innerText = dateText;
+          releasedRow.append(dateDiv);
+        }
+
+        let sdhqRatingHtml = `
+        <div class="sdhq-search-rating">
+          <a target="_blank" href="${data.sdhq.rating.link}">
+            <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/rating-${data.sdhq.rating.acf.sdhq_rating}-star.svg">
+          </a>
+        </div>
+        `;
+        let sdhqRatingElement = parser
+          .parseFromString(sdhqRatingHtml, "text/html")
+          .querySelector("div");
+        releasedRow.append(sdhqRatingElement);
+      }
     });
 
     // request data from background service

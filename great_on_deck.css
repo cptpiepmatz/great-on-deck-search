@@ -17,6 +17,13 @@
     height: 20px;
 }
 
+.search_released {
+    line-height: inherit !important;
+    display: inline-flex !important;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .protondb-search-medal {
     color: black;
     height: 20px !important;
@@ -27,6 +34,10 @@
     margin: 0 2px 0 0;
     align-items: center;
     display: inline-flex !important;
+}
+
+.sdhq-search-rating img {
+    height: 14px;
 }
 
 /* App Page Styles */
