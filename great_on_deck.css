@@ -133,3 +133,8 @@
     align-content: center;
     align-items: center;
 }
+@media (max-width: 910px) {
+    .sdhq-front-page {
+        bottom: 70px;
+    }
+}
