@@ -133,7 +133,7 @@ function handleSearchResults() {
         let sdhqRatingHtml = `
         <div class="sdhq-search-rating">
           <a target="_blank" href="${data.sdhq.rating.link}">
-            <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/rating-${data.sdhq.rating.acf.sdhq_rating}-star.svg">
+            <img src="https://steamdeckhq.com/misc/rating-${data.sdhq.rating.acf.sdhq_rating}-star.svg">
           </a>
         </div>
         `;
@@ -219,7 +219,7 @@ function handleAppPage() {
           <div class="sdhq-review-row">
             <img 
               class="sdhq-star-rating" 
-              src="https://steamdeckhq.com/wp-content/uploads/2022/06/rating-${rating.acf.sdhq_rating}-star.svg"
+              src="https://steamdeckhq.com/misc/rating-${rating.acf.sdhq_rating}-star.svg"
               data-tooltip-text="
                 Performance: ${cats.performance}; 
                 Visuals: ${cats.visuals};
@@ -339,7 +339,7 @@ function handleFrontPage() {
         let sdhqRatingHtml = `
         <div class="sdhq-front-page">
           <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/sdhq-logo.svg" height="30px">
-          <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/rating-${data.rating.acf.sdhq_rating}-star.svg" height="25px">
+          <img src="https://steamdeckhq.com/misc/rating-${data.rating.acf.sdhq_rating}-star.svg" height="25px">
         </div>
         `;
         let sdhqRatingElement = parser
