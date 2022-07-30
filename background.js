@@ -61,7 +61,7 @@ async function fetchDeckVerified(appId) {
     appId,
     `https://www.protondb.com/proxy/steam/deck-verified?nAppID=${appId}`
   );
-  return data.results ?? null;
+  return data?.results ?? null;
 }
 
 /**
