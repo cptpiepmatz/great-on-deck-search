@@ -16,7 +16,8 @@
   ],
   "permissions": [
     "https://store.steampowered.com/*",
-    "https://www.protondb.com/app/*"
+    "https://www.protondb.com/app/*",
+    "https://steamdeckhq.com/*"
   ],
   "icons": {
     "16": "icon/icon16.png",

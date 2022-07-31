@@ -17,6 +17,20 @@
     height: 20px;
 }
 
+.search_released {
+    line-height: inherit !important;
+    display: inline-flex !important;
+    flex-direction: column;
+    justify-content: center;
+}
+@media (max-width: 720px) {
+    .search_released {
+        flex-direction: row;
+        gap: 5px;
+        width: fit-content !important;
+    }
+}
+
 .protondb-search-medal {
     color: black;
     height: 20px !important;
@@ -27,6 +41,10 @@
     margin: 0 2px 0 0;
     align-items: center;
     display: inline-flex !important;
+}
+
+.sdhq-search-rating img {
+    height: 14px;
 }
 
 /* App Page Styles */
@@ -79,6 +97,40 @@
     border-radius: 2px;
 }
 
+.sdhq-logo {
+    display: flex;
+    justify-content: center;
+}
+.sdhq-logo img {
+    width: 220px;
+}
+.sdhq-review-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.sdhq-review-row .sdhq-star-rating {
+    height: 40px;
+}
+.sdhq-author-avatar * {
+    height: 40px;
+    border-radius: 50%;
+}
+.sdhq-separator {
+    height: 38px;
+    width: 2px;
+    background-color: white;
+    border-radius: 1px;
+}
+.sdhq-nav-button {
+    order: -7;
+}
+.sdhq-nav-button img {
+    filter: brightness(0) invert(1);
+    background: none;
+}
+
 /* Front Page Styles */
 .store_main_capsule .platforms {
     display: flex;
@@ -86,4 +138,21 @@
 }
 .store_main_capsule .platforms span {
     display: flex;
+}
+.sdhq-front-page {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0 10px 0 0;
+    padding: 2px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+@media (max-width: 910px) {
+    .sdhq-front-page {
+        bottom: 70px;
+    }
 }
