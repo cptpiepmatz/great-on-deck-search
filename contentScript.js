@@ -330,9 +330,9 @@ function handleFrontPage() {
       let hero = appHeroes.get(appId);
       if (!hero) return;
       let platforms = hero.querySelector(".platforms");
-      let verifiedIcon = createDeckVerifiedIcon(data.deckVerified.resolved_category);
+      let verifiedIcon = createDeckVerifiedIcon(data.deckVerified?.resolved_category);
       if (verifiedIcon) platforms.prepend(verifiedIcon);
-      let protonMedal = createProtonDbMedal(appId, data.protonDb.tier);
+      let protonMedal = createProtonDbMedal(appId, data.protonDb?.tier);
       if (protonMedal) platforms.prepend(protonMedal);
 
       if (data.sdhq.rating) {
