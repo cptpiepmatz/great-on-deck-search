@@ -23,6 +23,13 @@
     flex-direction: column;
     justify-content: center;
 }
+@media (max-width: 720px) {
+    .search_released {
+        flex-direction: row;
+        gap: 5px;
+        width: fit-content !important;
+    }
+}
 
 .protondb-search-medal {
     color: black;
