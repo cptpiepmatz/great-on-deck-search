@@ -335,11 +335,11 @@ function handleFrontPage() {
       let protonMedal = createProtonDbMedal(appId, data.protonDb.tier);
       if (protonMedal) platforms.prepend(protonMedal);
 
-      if (data.rating) {
+      if (data.sdhq.rating) {
         let sdhqRatingHtml = `
         <div class="sdhq-front-page">
           <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/sdhq-logo.svg" height="30px">
-          <img src="https://steamdeckhq.com/misc/rating-${data.rating.acf.sdhq_rating}-star.svg" height="25px">
+          <img src="https://steamdeckhq.com/misc/rating-${data.sdhq.rating.acf.sdhq_rating}-star.svg" height="25px">
         </div>
         `;
         let sdhqRatingElement = parser
