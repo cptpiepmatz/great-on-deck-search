@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+  >
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma-switch@2.0.4/dist/css/bulma-switch.min.css"
+  >
+</head>
+<body>
+  <div class="card">
+    <div
+      class="card-header has-background-black-bis"
+      style="border-radius: unset"
+    >
+      <figure class="image card-header-icon" style="width: 128px; cursor: inherit">
+        <img src="../icon/icon.svg">
+      </figure>
+      <p class="card-header-title title is-4 pl-0 has-text-light">
+        Show Great on Deck on Steam
+      </p>
+    </div>
+    <div class="card-content">
+      <p class="title is-6 mb-2">Settings</p>
+      <div class="field">
+        <input
+          id="toggleProtonDB"
+          type="checkbox"
+          class="switch is-rounded is-black"
+          checked="checked"
+        >
+        <label for="toggleProtonDB" class="pt-0" style="user-select: none">
+          Display ProtonDB Medals
+        </label>
+      </div>
+      <div class="field">
+        <input
+          id="toggleDeckVerified"
+          type="checkbox"
+          class="switch is-rounded is-black"
+          checked="checked"
+        >
+        <label for="toggleDeckVerified" class="pt-0" style="user-select: none">
+          Display Steam Deck Verification Badges
+        </label>
+      </div>
+      <div class="field">
+        <input
+          id="toggleSteamDeckHQ"
+          type="checkbox"
+          class="switch is-rounded is-black"
+          checked="checked"
+        >
+        <label for="toggleSteamDeckHQ" class="pt-0" style="user-select: none">
+          Display Steam Deck HQ Game Reviews
+        </label>
+      </div>
+    </div>
+    <div class="card-footer" style="border-radius: unset">
+      <a
+        href="https://github.com/cptpiepmatz/great-on-deck-search"
+        target="_blank"
+        class="card-footer-item"
+      >
+        <span class="icon-text">
+          <span class="icon">
+            <img
+              src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg"
+              style="filter: brightness(0)"
+            >
+          </span>
+          <span>Source Code</span>
+        </span>
+      </a>
+      <a
+        href="https://www.buymeacoffee.com/cptpiepmatz"
+        target="_blank"
+        class="card-footer-item"
+      >
+        <span class="icon-text">
+          <span class="icon">
+            <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-1.svg">
+          </span>
+          <span>Support Me</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
