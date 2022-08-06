@@ -4,14 +4,14 @@
   "version": "1.1.0",
   "manifest_version": 2,
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["src/background.js"]
   },
   "content_scripts": [
     {
       "matches": ["https://store.steampowered.com/*"],
       "run_at": "document_idle",
-      "js": ["contentScript.js"],
-      "css": ["great_on_deck.css"]
+      "js": ["src/contentScript.js"],
+      "css": ["src/great_on_deck.css"]
     }
   ],
   "permissions": [
