@@ -12,11 +12,12 @@ function fetchSettings(...keys) {
   });
 }
 
+let settings = fetchSettings(...toggleIds);
 document.addEventListener("DOMContentLoaded", async () => {
   // fetches all the settings and defaults to true for every key
-  let settings = Object.assign(
+  settings = Object.assign(
     Object.fromEntries(toggleIds.map(id => [id, true])),
-    await fetchSettings(...toggleIds)
+    await settings
   );
 
   // get every toggle and update it value to the settings
