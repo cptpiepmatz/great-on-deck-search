@@ -1,4 +1,4 @@
-import SessionCache from "./common/session_cache";
+import SessionCache from "./common/session_cache.js";
 
 /** Cache for the Steam Deck HQ game review ratings. */
 const ratingCache = new SessionCache("sdhq_rating");

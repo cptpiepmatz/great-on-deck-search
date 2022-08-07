@@ -1,7 +1,7 @@
-import RequestType from "./common/request";
-import fetchDeckVerified from "./deck_verified";
-import fetchProtonDB from "./proton_db";
-import fetchSteamDeckHQData from "./sdhq";
+import RequestType from "./common/request.js";
+import fetchDeckVerified from "./deck_verified.js";
+import fetchProtonDB from "./proton_db.js";
+import fetchSteamDeckHQData from "./sdhq.js";
 
 chrome.runtime.onConnect.addListener(port => {
   port.onMessage.addListener(async ({type, appId}) => {

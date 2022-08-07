@@ -1,5 +1,5 @@
-import SessionCache from "./common/session_cache";
-import cachedFetch from "./common/cached_fetch";
+import SessionCache from "./common/session_cache.js";
+import cachedFetch from "./common/cached_fetch.js";
 
 /** Cache for the Deck Verifications. */
 const cache = new SessionCache("deck_verified");
