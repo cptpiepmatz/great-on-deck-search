@@ -51,7 +51,7 @@ port.onMessage.addListener(res => {
  *     }
  *   },
  *   avatar: null | {
- *     mpp_avatar: {[24 | 48 | 96 | 150 | 300 | full]: string}
+ *     mpp_avatar: {[key: 24 | 48 | 96 | 150 | 300 | "full"]: string}
  *   }
  * }} SDHQData
  */
