@@ -1,0 +1,8 @@
+@import "deck_verified";
+@import "proton_db";
+@import "sdhq";
+
+.store_main_capsule .platforms {
+  display: flex;
+  align-items: center;
+}

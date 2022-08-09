@@ -1,0 +1,18 @@
+.sgodos.front-page.sdhq.rating {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 10px 0 0;
+  padding: 2px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+@media (max-width: 910px) {
+  .sgodos.front-page.sdhq.rating {
+    bottom: 70px;
+  }
+}
