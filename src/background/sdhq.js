@@ -1,4 +1,5 @@
 import SessionCache from "./common/session_cache.js";
+import cachedFetch from "./common/cached_fetch.js";
 
 /** Cache for the Steam Deck HQ game review ratings. */
 const ratingCache = new SessionCache("sdhq_rating");
@@ -10,7 +11,7 @@ const ratingCache = new SessionCache("sdhq_rating");
  */
 async function fetchSteamDeckHQRating(appId) {
   const url = `https://steamdeckhq.com/wp-json/wp/v2/game-reviews/?meta_key=steam_app_id&meta_value=${appId}`;
-  let data = await cachedFetch(sdhqRatingCache, appId, url);
+  let data = await cachedFetch(ratingCache, appId, url);
   return data ? data[0] ?? null : null;
 }
 
@@ -24,7 +25,7 @@ const avatarCache = new SessionCache("sdhq_avatar");
  */
 async function fetchSteamDeckHQAuthorAvatar(authorId) {
   const url = `https://steamdeckhq.com/wp-json/wp/v2/users/${authorId}`;
-  return await cachedFetch(sdhqAuthorAvatarCache, authorId, url);
+  return await cachedFetch(avatarCache, authorId, url);
 }
 
 /**
