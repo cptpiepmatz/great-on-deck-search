@@ -37,16 +37,15 @@ class SessionCache {
    * Data that is in the session storage but not in the internal map will be
    * pushed to it.
    * @param {string|number} key key to retrieve data from
-   * @return {any}
+   * @return {Promise<any>}
    */
-  get(key) {
+  async get(key) {
     let mapResult = this.cache.get(key);
     if (mapResult) return mapResult;
-    let storageResult = sessionStorage.getItem(this.storageKey(key));
+    let storageResult = await chrome.storage.session.get(this.storageKey(key));
     if (storageResult) {
-      let obj = JSON.parse(storageResult);
-      this.cache.set(key, obj);
-      return obj;
+      this.cache.set(key, storageResult);
+      return storageResult;
     }
     return undefined;
   }
@@ -54,11 +53,13 @@ class SessionCache {
   /**
    * Store the value in both cache tiers.
    * @param {string|number} key key to insert data for
-   * @param {any} value data to insert
+   * @param {Promise<any>} value data to insert
    */
-  set(key, value) {
+  async set(key, value) {
     this.cache.set(key, value);
-    sessionStorage.setItem(this.storageKey(key), JSON.stringify(value));
+    let store = {};
+    store[this.storageKey(key)] = value;
+    await chrome.storage.session.set(store);
   }
 }
 

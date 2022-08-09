@@ -10,17 +10,17 @@ async function cachedFetch(cache, requestId, fetchUrl) {
   if (!requestId) return null;
 
   // return data from cache if possible
-  let cached = cache.get(requestId);
+  let cached = await cache.get(requestId);
   if (cached === undefined) return cached;
 
   // fetch the data from the url
   let res = await fetch(fetchUrl);
   if (res.ok) {
     let json = await res.json();
-    cache.set(requestId, json);
+    await cache.set(requestId, json);
     return json;
   }
-  cache.set(requestId, null);
+  await cache.set(requestId, null);
   return null;
 }
 
