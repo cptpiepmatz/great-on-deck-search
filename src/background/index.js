@@ -4,7 +4,7 @@ import fetchProtonDB from "./proton_db.js";
 import fetchSteamDeckHQData from "./sdhq.js";
 
 chrome.runtime.onConnect.addListener(port => {
-  port.onMessage.addListener(async ({type, appId}) => {
+  port.onMessage.addListener(async ({type, appId, reqId}) => {
     let reqTypes = [type].flat();
     let req = [];
     for (let reqType of reqTypes) {
@@ -23,6 +23,6 @@ chrome.runtime.onConnect.addListener(port => {
     let res = await Promise.all(req);
     let data = {};
     for (let [i, reqType] of reqTypes.entries()) data[reqType] = res[i];
-    port.postMessage({type, appId, data});
+    port.postMessage({type, appId, reqId, data});
   });
 });
