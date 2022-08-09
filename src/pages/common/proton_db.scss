@@ -1,15 +1,17 @@
-.sgodos.proton-db.proton-db-rating-borked {
-  background-color: #FF0000
-}
-.sgodos.proton-db.proton-db-rating-bronze {
-  background-color: #CD7F32
-}
-.sgodos.proton-db.proton-db-rating-silver {
-  background-color: #A6A6A6
-}
-.sgodos.proton-db.proton-db-rating-gold {
-  background-color: #CFB53B
-}
-.sgodos.proton-db.proton-db-rating-platinum {
-  background-color: #B4C7DC
+.sgodos.proton-db {
+  &.proton-db-rating-borked {
+    background-color: #FF0000
+  }
+  &.proton-db-rating-bronze {
+    background-color: #CD7F32
+  }
+  &.proton-db-rating-silver {
+    background-color: #A6A6A6
+  }
+  &.proton-db-rating-gold {
+    background-color: #CFB53B
+  }
+  &.proton-db-rating-platinum {
+    background-color: #B4C7DC
+  }
 }

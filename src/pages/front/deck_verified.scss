@@ -1,6 +1,8 @@
-.sgodos.front-page.deck-verified.badge {
-  order: -4;
-}
-.sgodos.front-page.deck-verified.badge img {
-  height: 20px;
+.sgodos.front-page.deck-verified {
+  &.badge {
+    order: -4;
+  }
+  &.badge img {
+    height: 20px;
+  }
 }
