@@ -1,0 +1,52 @@
+.sgodos.app-page.proton-db {
+  // styles for the sidebar element
+  &.sidebar-element {
+    order: -2;
+    font-size: 40px;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &.sidebar-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    img {
+      height: 50px;
+    }
+
+    span {
+      font-family: "Rationale", sans-serif;
+      font-weight: 600;
+    }
+  }
+
+  &.name-proton {
+    color: white;
+  }
+
+  &.name-db {
+    color: rgb(207, 181, 59);
+  }
+
+  &.sidebar-medal {
+    margin-top: 10px;
+    color: black;
+    font-size: 30px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-weight: bold;
+    align-self: stretch;
+    text-align: center;
+  }
+
+  // style for the nav button
+  &.nav-button {
+    order: -5;
+  }
+}
