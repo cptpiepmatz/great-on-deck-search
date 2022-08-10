@@ -1,0 +1,23 @@
+@import "deck_verified";
+@import "proton_db";
+@import "sdhq";
+
+.col.search_name.ellipsis div {
+  display: flex;
+  align-items: center;
+
+  .vr_supported, .vr_required {
+    order: 10;
+  }
+}
+
+.search_result_row .col.search_released {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+
+  * {
+    line-height: initial;
+  }
+}
+
