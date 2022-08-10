@@ -12,7 +12,11 @@ export const Setting = {
  */
 function fetchSettings(...keys) {
   return new Promise(resolve => {
-    chrome.storage.sync.get(keys, resolve);
+    chrome.storage.sync.get(keys, settings => {
+      let defaultSettings = {};
+      for (let val of Object.values(Setting)) defaultSettings[val] = true;
+      resolve(Object.assign(defaultSettings, settings));
+    });
   });
 }
 
