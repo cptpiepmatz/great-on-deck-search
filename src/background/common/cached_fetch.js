@@ -11,7 +11,6 @@ async function cachedFetch(cache, requestId, fetchUrl) {
 
   // return data from cache if possible
   let cached = await cache.get(requestId);
-  console.log(cached);
   if (cached !== undefined) return cached;
 
   // fetch the data from the url

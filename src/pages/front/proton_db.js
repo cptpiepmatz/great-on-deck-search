@@ -26,7 +26,6 @@ function createElement(rating) {
  */
 async function protonDBFrontPage(appId, hero) {
   const {data} = await requestBackground(RequestType.PROTON_DB, appId);
-  console.log(data);
   if (!data.proton_db || data.proton_db.tier === "pending") return;
   hero
     .querySelector(".platforms")
