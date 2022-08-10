@@ -85,7 +85,7 @@ function createNavButton(link) {
  */
 async function sdhqAppPage(appId, sidebar, navbar) {
   const {data} = await requestBackground(RequestType.SDHQ, appId);
-  if (!data.sdhq) return;
+  if (!data.sdhq || !data.sdhq.rating || !data.sdhq.avatar) return;
   sidebar.prepend(createSidebarElement(
     data.sdhq.rating.link,
     data.sdhq.rating.acf.sdhq_rating,
