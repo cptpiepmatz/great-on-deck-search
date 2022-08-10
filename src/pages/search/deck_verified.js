@@ -36,7 +36,9 @@ async function deckVerifiedSearchPage(appId, row) {
   if (!data.deck_verified || !data.deck_verified.results) return;
 
   let platforms = row.querySelector("div.col.search_name div");
-  platforms.append(badgeElements[data.deck_verified.results.resolved_category].cloneNode(true));
+  platforms.append(badgeElements[data.deck_verified.results.resolved_category]
+      .cloneNode(true)
+  );
 }
 
 export default deckVerifiedSearchPage;

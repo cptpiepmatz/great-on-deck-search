@@ -1,5 +1,6 @@
 /**
- * Assign some classes on the deck verified results in order to lift it to the top.
+ * Assign some classes on the deck verified results in order to lift it to the
+ * top.
  * @return {Promise<void>}
  */
 async function deckVerifiedAppPage() {

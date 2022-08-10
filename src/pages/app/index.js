@@ -8,7 +8,8 @@ function handleAppPage() {
   if (!testAppPage()) return;
 
   // pull the App ID from the URL
-  let {appId} = document.location.pathname.match(/\/(?<appId>\d+)\/[^/]+\//).groups;
+  let {appId} = document.location.pathname
+    .match(/\/(?<appId>\d+)\/[^/]+\//).groups;
   let gameMetaData = document.querySelector(".game_meta_data");
   let navbar = document.querySelector(".apphub_OtherSiteInfo");
 
