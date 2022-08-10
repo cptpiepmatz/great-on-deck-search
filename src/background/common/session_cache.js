@@ -43,7 +43,7 @@ class SessionCache {
     let mapResult = this.cache.get(key);
     if (mapResult) return mapResult;
     let storageResult = await chrome.storage.session.get(this.storageKey(key));
-    if (storageResult) {
+    if (storageResult && Object.keys(storageResult).length) {
       this.cache.set(key, storageResult);
       return storageResult;
     }
