@@ -42,6 +42,7 @@ class SessionCache {
   async get(key) {
     let mapResult = this.cache.get(key);
     if (mapResult) return mapResult;
+    if (!chrome.storage.session) return undefined;
     let storageResult = await chrome.storage.session.get(this.storageKey(key));
     if (storageResult && Object.keys(storageResult).length) {
       this.cache.set(key, storageResult);
@@ -59,7 +60,7 @@ class SessionCache {
     this.cache.set(key, value);
     let store = {};
     store[this.storageKey(key)] = value;
-    await chrome.storage.session.set(store);
+    await chrome.storage.session?.set(store);
   }
 }
 
