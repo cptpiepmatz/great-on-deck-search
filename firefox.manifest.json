@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://store.steampowered.com/*"],
-      "run_at": "document_idle",
+      "run_at": "document_end",
       "js": ["out/pages.bundle.js"],
       "css": ["out/pages.bundle.css"]
     }
