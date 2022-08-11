@@ -3,6 +3,7 @@ import handleSearchResultsPage from "./search/index.js";
 import handleFrontPage from "./front/index.js";
 import handleAppPage from "./app/index.js";
 import handleWishlistPage from "./wishlist/index.js";
+import handleGamesPage from "./games/index.js";
 
 injectHead();
 
@@ -10,3 +11,4 @@ handleFrontPage();
 handleAppPage();
 handleSearchResultsPage();
 handleWishlistPage();
+handleGamesPage();
