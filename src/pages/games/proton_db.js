@@ -34,6 +34,7 @@ function createElement(appId, tier) {
 async function protonDBGamesPage(appId, row) {
   let {data} = await requestBackground(RequestType.PROTON_DB, appId);
   if (!data.proton_db || !data.proton_db.tier) return;
+  if (data.proton_db.tier === "pending") return;
   row
     .querySelector(".sgodos.games-page.extra")
     .append(createElement(appId, data.proton_db.tier));
