@@ -14,14 +14,21 @@ async function cachedFetch(cache, requestId, fetchUrl) {
   if (cached !== undefined) return cached;
 
   // fetch the data from the url
-  let res = await fetch(fetchUrl);
-  if (res.ok) {
-    let json = await res.json();
-    await cache.set(requestId, json);
-    return json;
+  try {
+    // if fetching fails, just return null for now
+    // cache will not be updated so next request we try again
+    let res = await fetch(fetchUrl);
+    if (res.ok) {
+      let json = await res.json();
+      await cache.set(requestId, json);
+      return json;
+    }
+    await cache.set(requestId, null);
+    return null;
   }
-  await cache.set(requestId, null);
-  return null;
+  catch (e) {
+    return null;
+  }
 }
 
 export default cachedFetch;

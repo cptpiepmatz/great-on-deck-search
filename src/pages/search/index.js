@@ -1,9 +1,9 @@
-/** Function to handle the contents of the search results page. */
 import fetchSettings, {Setting} from "../common/fetch_settings.js";
 import deckVerifiedSearchPage from "./deck_verified.js";
 import protonDBSearchPage from "./proton_db.js";
 import sdhqSearchPage from "./sdhq.js";
 
+/** Function to handle the contents of the search results page. */
 function handleSearchResultsPage() {
   if (!testSearchResultsPage()) return;
 

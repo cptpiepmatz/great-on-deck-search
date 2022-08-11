@@ -1,0 +1,22 @@
+.sgodos.games-page.sdhq {
+  &.review-row {
+    order: 6;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: rgb(86, 112, 127);
+    }
+
+    img.logo {
+      height: 26px;
+    }
+
+    img.stars {
+      padding-left: 4px;
+      height: 20px;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import "proton_db";
+@import "deck_verified";
+@import "sdhq";
+
+.sgodos.games-page {
+  &.extra {
+    min-height: 28px;
+    margin: {
+      top: 6px;
+      bottom: 6px;
+    }
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin: {
+        right: 4px;
+      }
+    }
+  }
+}
