@@ -2,8 +2,7 @@ import trimHtml from "../common/trim_html.js";
 import dbEntry from "../common/proton_db/db_entry.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
-
-const parser = new DOMParser();
+import parser from "../common/parser.js";
 
 /**
  * Creates an element for the wishlist row displaying the ProtonDB medal.

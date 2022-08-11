@@ -1,5 +1,7 @@
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
+import parser from "../common/parser.js";
+import trimHtml from "../common/trim_html.js";
 
 /**
  * Creates an HTML element containing the proton db medal icon.
@@ -7,14 +9,15 @@ import RequestType from "../../background/common/request.js";
  * @return {Element}
  */
 function createElement(rating) {
-  const html = `
+  const html = trimHtml(`
     <span class="sgodos front-page proton-db medal">
       <span 
         class="sgodos proton-db proton-db-rating-${rating}"
-      >${rating.toUpperCase()}</span>
+      >
+        ${rating.toUpperCase()}
+      </span>
     </span>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("span");
 }
 

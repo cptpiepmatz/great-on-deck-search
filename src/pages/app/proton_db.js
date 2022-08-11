@@ -2,6 +2,8 @@ import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
 import dbEntry from "../common/proton_db/db_entry.js";
 import logo from "../common/proton_db/logo.js";
+import trimHtml from "../common/trim_html.js";
+import parser from "../common/parser.js";
 
 /**
  * Creates an element for the sidebar displaying the ProtonDB medal.
@@ -10,7 +12,7 @@ import logo from "../common/proton_db/logo.js";
  * @return {HTMLDivElement}
  */
 function createSidebarElement(appId, medal) {
-  const html = `
+  const html = trimHtml(`
     <div class="
       block 
       responsive_apppage_details_right 
@@ -31,11 +33,12 @@ function createSidebarElement(appId, medal) {
           proton-db 
           sidebar-medal 
           proton-db-rating-${medal}"
-        >${medal.toUpperCase()}</span>
+        >
+          ${medal.toUpperCase()}
+        </span>
       </a>
     </div>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("div");
 }
 
@@ -45,7 +48,7 @@ function createSidebarElement(appId, medal) {
  * @return {HTMLAnchorElement}
  */
 function createNavButton(appId) {
-  const html = `
+  const html = trimHtml(`
     <a
       rel="noopener"
       class="btnv6_blue_hoverfade btn_medium sgodos app-page proton-db nav-button"
@@ -56,8 +59,7 @@ function createNavButton(appId) {
         <img class="ico16" src="${logo}">
       </span>
     </a>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("a");
 }
 

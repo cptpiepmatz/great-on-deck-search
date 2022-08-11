@@ -1,9 +1,8 @@
 import ratingImg from "../common/sdhq/rating_img.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
-
-/** HTML parser for the element creation. */
-let parser = new DOMParser();
+import trimHtml from "../common/trim_html.js";
+import parser from "../common/parser.js";
 
 /**
  * Creates an element for the search results row displaying the SDHQ game review rating.
@@ -12,11 +11,11 @@ let parser = new DOMParser();
  * @return {HTMLAnchorElement}
  */
 function createElement(link, stars) {
-  const html = `
+  const html = trimHtml(`
     <a href="${link}" target="_blank" class="sgodos search-page sdhq stars">
         <img src="${ratingImg(stars)}">
     </a>
-  `;
+  `);
   return parser.parseFromString(html, "text/html").querySelector("a");
 }
 

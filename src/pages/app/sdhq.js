@@ -2,6 +2,8 @@ import logo from "../common/sdhq/logo.js";
 import ratingImg from "../common/sdhq/rating_img.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
+import trimHtml from "../common/trim_html.js";
+import parser from "../common/parser.js";
 
 /**
  * Creates an element for the sidebar displaying the SDHQ game review stars.
@@ -20,7 +22,7 @@ import RequestType from "../../background/common/request.js";
  * @return {HTMLDivElement}
  */
 function createSidebarElement(link, rating, cats, authorName, authorAvatar) {
-  const html = `
+  const html = trimHtml(`
     <div class="block responsive_apppage_details_right sgodos app-page sdhq sidebar-element">
       <a href="${link}" target="_blank">
         <div class="sgodos app-page sdhq sidebar-logo">
@@ -49,8 +51,7 @@ function createSidebarElement(link, rating, cats, authorName, authorAvatar) {
         </div>
       </a>
     </div>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("div");
 }
 
@@ -60,7 +61,7 @@ function createSidebarElement(link, rating, cats, authorName, authorAvatar) {
  * @return {HTMLAnchorElement}
  */
 function createNavButton(link) {
-  const html = `
+  const html = trimHtml(`
     <a
       rel="noopener"
       class="btnv6_blue_hoverfade btn_medium sgodos app-page sdhq nav-button"
@@ -71,8 +72,7 @@ function createNavButton(link) {
         <img class="ico16" src="${logo}">
       </span>
     </a>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("a");
 }
 

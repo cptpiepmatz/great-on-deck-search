@@ -1,6 +1,8 @@
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
 import Badge from "../common/deck_verified/badge.js";
+import trimHtml from "../common/trim_html.js";
+import parser from "../common/parser.js";
 
 /**
  * Creates an HTML element containing the steam deck verification icon.
@@ -8,12 +10,11 @@ import Badge from "../common/deck_verified/badge.js";
  * @return {Element}
  */
 function createElement(status) {
-  const html = `
+  const html = trimHtml(`
     <span class="sgodos front-page deck-verified badge platform_img">
       <img src="${Badge[status].iconUrl}">
     </span>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("span");
 }
 

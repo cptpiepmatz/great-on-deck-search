@@ -2,6 +2,8 @@ import ratingImg from "../common/sdhq/rating_img.js";
 import logo from "../common/sdhq/logo.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
+import trimHtml from "../common/trim_html.js";
+import parser from "../common/parser.js";
 
 /**
  * Creates an HTML element containing the SDHQ logo and rating.
@@ -9,13 +11,12 @@ import RequestType from "../../background/common/request.js";
  * @return {Element}
  */
 function createElement(rating) {
-  const html = `
+  const html = trimHtml(`
     <div class="sgodos front-page sdhq rating">
       <img src="${logo}" height="30px">
       <img src="${ratingImg(rating)}" height="25px">
     </div>
-  `;
-  let parser = new DOMParser();
+  `);
   return parser.parseFromString(html, "text/html").querySelector("div");
 }
 

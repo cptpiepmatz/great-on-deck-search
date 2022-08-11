@@ -1,9 +1,9 @@
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
 import dbEntry from "../common/proton_db/db_entry.js";
+import trimHtml from "../common/trim_html.js";
+import parser from "../common/parser.js";
 
-/** HTML parser for the element creation. */
-const parser = new DOMParser();
 
 /**
  * Creates an element for the search results row displaying the ProtonDB medal.
@@ -12,7 +12,7 @@ const parser = new DOMParser();
  * @return {HTMLSpanElement}
  */
 function createElement(appId, tier) {
-  const html = `
+  const html = trimHtml(`
     <span class="sgodos search-page proton-db medal">
       <a 
         href="${dbEntry(appId)}" 
@@ -20,7 +20,7 @@ function createElement(appId, tier) {
         class="sgodos search-page proton-db proton-db-rating-${tier}"
       >${tier.toUpperCase()}</a>
     </span>
-  `;
+  `);
   return parser.parseFromString(html, "text/html").querySelector("span");
 }
 

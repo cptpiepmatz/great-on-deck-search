@@ -1,9 +1,9 @@
 import badges from "../common/deck_verified/badge.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
+import parser from "../common/parser.js";
+import trimHtml from "../common/trim_html.js";
 
-/** HTML parser for the element creation. */
-const parser = new DOMParser();
 
 /**
  * Creates an element for the search results row displaying the deck verification status.
@@ -11,11 +11,11 @@ const parser = new DOMParser();
  * @return {HTMLSpanElement}
  */
 function createElement(status) {
-  const html = `
+  const html = trimHtml(`
     <span class="sgodos search-page deck-verified badge">
       <img src="${badges[status].iconUrl}">
     </span>
-  `;
+  `);
   return parser.parseFromString(html, "text/html").querySelector("span");
 }
 

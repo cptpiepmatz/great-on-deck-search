@@ -2,8 +2,7 @@ import trimHtml from "../common/trim_html.js";
 import ratingImg from "../common/sdhq/rating_img.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
-
-const parser = new DOMParser();
+import parser from "../common/parser.js";
 
 /**
  * Creates an element for the search wishlist row displaying the SDHQ game
