@@ -5,8 +5,8 @@ import trimHtml from "../common/trim_html.js";
 import parser from "../common/parser.js";
 
 /**
- * Crates an element for wishlist rows displaying the deck verification status.
- * @param {0 | 1 | 2 | 3} status
+ * Creates an element for wishlist rows displaying the deck verification status.
+ * @param {0 | 1 | 2 | 3} status verification status of the app
  * @return {HTMLSpanElement}
  */
 function createElement(status) {
