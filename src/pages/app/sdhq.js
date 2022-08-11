@@ -44,7 +44,7 @@ function createSidebarElement(link, rating, cats, authorName, authorAvatar) {
             data-tooltip-text="Reviewed By: ${authorName}"
           >
             <source srcset="${authorAvatar}">
-            <img src="https://steamdeckhq.com/wp-content/uploads/2022/06/cropped-sdhq-icon.png">
+            <img src="${logo}">
           </picture>
         </div>
       </a>

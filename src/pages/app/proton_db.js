@@ -1,5 +1,7 @@
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
+import dbEntry from "../common/proton_db/db_entry.js";
+import logo from "../common/proton_db/logo.js";
 
 /**
  * Creates an element for the sidebar displaying the ProtonDB medal.
@@ -17,9 +19,9 @@ function createSidebarElement(appId, medal) {
       proton-db 
       sidebar-element
     ">
-      <a href="https://protondb.com/app/${appId}" target="_blank">
+      <a href="${dbEntry(appId)}" target="_blank">
         <div class="sgodos app-page proton-db sidebar-logo">
-          <img src="https://www.protondb.com/sites/protondb/images/site-logo.svg">
+          <img src="${logo}">
           <span class="sgodos app-page proton-db name-proton">proton</span>
           <span class="sgodos app-page proton-db name-db">db</span>
         </div>
@@ -51,7 +53,7 @@ function createNavButton(appId) {
       target="_blank"
     >
       <span data-tooltip-text="View on ProtonDB">
-        <img class="ico16" src="https://www.protondb.com/sites/protondb/images/site-logo.svg">
+        <img class="ico16" src="${logo}">
       </span>
     </a>
   `;

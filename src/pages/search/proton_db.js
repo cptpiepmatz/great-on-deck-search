@@ -1,5 +1,6 @@
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
+import dbEntry from "../common/proton_db/db_entry.js";
 
 /** HTML parser for the element creation. */
 const parser = new DOMParser();
@@ -14,7 +15,7 @@ function createElement(appId, tier) {
   const html = `
     <span class="sgodos search-page proton-db medal">
       <a 
-        href="https://protondb.com/app/${appId}" 
+        href="${dbEntry(appId)}" 
         target="_blank"
         class="sgodos search-page proton-db proton-db-rating-${tier}"
       >${tier.toUpperCase()}</a>
