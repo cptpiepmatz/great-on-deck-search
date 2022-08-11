@@ -1,0 +1,23 @@
+.sgodos.search-page.proton-db {
+  &.medal {
+    order: 9;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    margin: {
+      left: 1px;
+      right: 1px;
+    }
+
+    a {
+      height: fit-content;
+      color: black;
+      font-weight: bold;
+      border-radius: 2px;
+      padding: {
+        left: 3px;
+        right: 3px;
+      }
+    }
+  }
+}

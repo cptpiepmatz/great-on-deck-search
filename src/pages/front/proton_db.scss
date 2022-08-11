@@ -1,0 +1,16 @@
+.sgodos.front-page.proton-db {
+  &.medal {
+    order: -5;
+    padding: 0 1px;
+
+    span {
+      color: black;
+      box-sizing: border-box;
+      height: 20px;
+      text-align: center;
+      font-weight: bold;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+  }
+}

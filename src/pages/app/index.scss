@@ -1,0 +1,20 @@
+@import "deck_verified";
+@import "proton_db";
+@import "sdhq";
+
+// use flex displays to order elements without having to worry about correct html order
+
+.game_meta_data {
+  display: flex;
+  flex-direction: column;
+}
+
+.apphub_OtherSiteInfo {
+  display: flex;
+  gap: 4px;
+}
+
+.sgodos.app-page.nav-button img {
+  filter: brightness(0) invert(1);
+  background: none;
+}
