@@ -1,0 +1,28 @@
+@import "deck_verified";
+@import "proton_db";
+@import "sdhq";
+
+.lower_container .platform_icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wishlist_row .content {
+  height: 148px;
+
+  .title {
+    flex-grow: 1;
+    margin: 0;
+  }
+
+  .mid_container {
+    .stats {
+      margin: 0;
+    }
+  }
+}
+
+.sgodos.wishlist-page.separator {
+  flex-grow: 1;
+}

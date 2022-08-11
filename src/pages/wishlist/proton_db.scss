@@ -1,0 +1,22 @@
+.sgodos.wishlist-page.proton-db {
+  &.medal {
+    order: 7;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    margin: {
+      left: 2px;
+      right: 2px;
+    }
+
+    span {
+      color: black;
+      font-weight: bold;
+      border-radius: 2px;
+      padding: {
+        left: 3px;
+        right: 3px;
+      };
+    }
+  }
+}
