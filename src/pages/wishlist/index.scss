@@ -26,3 +26,9 @@
 .sgodos.wishlist-page.separator {
   flex-grow: 1;
 }
+
+.platform_icons {
+  .vr_required, .vr_supported {
+    order: 10;
+  }
+}
