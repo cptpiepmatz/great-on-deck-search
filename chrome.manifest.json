@@ -8,7 +8,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://store.steampowered.com/*"],
+      "matches": [
+        "https://store.steampowered.com/*",
+        "https://steamcommunity.com/id/*/games*"
+      ],
       "run_at": "document_end",
       "js": ["out/pages.bundle.js"],
       "css": ["out/pages.bundle.css"]
@@ -19,6 +22,7 @@
   ],
   "host_permissions": [
     "https://store.steampowered.com/*",
+    "https://steamcommunity.com/*",
     "https://www.protondb.com/app/*",
     "https://steamdeckhq.com/*"
   ],
