@@ -31,13 +31,13 @@ jobs:
       - name: Creating output directory
         run: mkdir crx
       - name: Copying files to output
-        run: cp -r manifest.json out icon LICENSE crx && cp -r src/settings crx/src
+        run: cp -r manifest.json out icon src LICENSE crx
       - name: Installing CRX bundler
         run: npm install -g crx
       - name: Bundling extension
-        run: crx pack crx -o great-on-deck-search.v${{steps.version.outputs.prop}}.crx
+        run: crx pack crx -o great-on-deck-search.chrome.v${{steps.version.outputs.prop}}.crx
       - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
           name: crx
-          path: great-on-deck-search.v${{steps.version.outputs.prop}}.crx
+          path: great-on-deck-search.chrome.v${{steps.version.outputs.prop}}.crx
