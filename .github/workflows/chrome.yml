@@ -31,7 +31,7 @@ jobs:
       - name: Creating output directory
         run: mkdir crx
       - name: Copying files to output
-        run: cp -r manifest.json out icon LICENSE crx
+        run: cp -r manifest.json out icon LICENSE crx && cp -r src/settings crx/src
       - name: Installing CRX bundler
         run: npm install -g crx
       - name: Bundling extension
