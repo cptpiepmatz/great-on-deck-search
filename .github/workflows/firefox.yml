@@ -31,7 +31,7 @@ jobs:
       - name: Installing web-ext
         run: npm install -g web-ext
       - name: Preparing files for signing
-        run: mkdir xpi && cp -r icon out src LICENSE manifest.json
+        run: mkdir xpi && cp -r icon out src LICENSE manifest.json xpi
       - name: Signing via web-ext
         run: cd xpi && web-ext sign --api-key ${{secrets.JWT_ISSUER}} --api-secret ${{secrets.JWT_SECRET}}
       - name: Renaming extension
