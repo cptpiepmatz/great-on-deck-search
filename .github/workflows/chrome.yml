@@ -1,0 +1,30 @@
+name: chrome
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/build
+      - uses: actions/download-artifact@v3
+        with:
+          name: out
+          path: out
+      - run: cp chrome.manifest.json manifest.json
+      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run: sudo apt install ./google-chrome-stable_current_amd64.deb -y
+      - uses: notiz-dev/github-actions-json-property@release
+        id: version
+        with:
+          path: "chrome.manifest.json"
+          prop_path: "version"
+      - run: mkdir great-on-deck-search.v${{steps.version.outputs.prop}}
+      - run: cp manifest.json out icon LICENSE great-on-deck-search.v${{steps.version.outputs.prop}}
+      - run: chrome --pack-extension=./great-on-deck-search.v${{steps.version.outputs.prop}}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: crx
+          path: great-on-deck-search.v${{steps.version.outputs.prop}}.crx
