@@ -28,7 +28,7 @@ jobs:
       - name: Installing zip
         run: sudo apt-get install zip -y
       - name: Bundling extension
-        run: zip great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
+        run: zip -r great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi icon out src LICENSE manifest.json
       - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
