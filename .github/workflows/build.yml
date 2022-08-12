@@ -14,7 +14,7 @@ jobs:
       - run: npm install -g sass rollup
       - run: chmod +x build.sh
       - run: ./build.sh
-      - uses: actions/upload-artifact
+      - uses: actions/upload-artifact@v3
         with:
           name: out
           path: out
