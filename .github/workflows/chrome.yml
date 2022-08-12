@@ -36,6 +36,8 @@ jobs:
         run: npm install -g crx
       - name: Bundling extension
         run: crx great-on-deck-search.v${{steps.version.outputs.prop}}
+      - name: listing all files
+        run: ls -a
       - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
