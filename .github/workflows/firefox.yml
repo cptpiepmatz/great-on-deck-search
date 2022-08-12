@@ -53,10 +53,10 @@ jobs:
         with:
           path: "firefox.manifest.json"
           prop_path: "version"
-      - name: Downloading crx
+      - name: Downloading xpi
         uses: actions/download-artifact@v3
         with:
-          name: crx
+          name: xpi
           path: ./
       - name: Creating Release
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -64,5 +64,5 @@ jobs:
           repo_token: "${{secrets.GITHUB_TOKEN}}"
           prerelease: false
           automatic_release_tag: "v${{steps.version.outputs.prop}}+firefox"
-          files: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.crx
+          files: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
 
