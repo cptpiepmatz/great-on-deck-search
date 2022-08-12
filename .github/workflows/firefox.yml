@@ -41,3 +41,28 @@ jobs:
         with:
           name: xpi
           path: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
+
+  release:
+    runs-on: ubuntu-latest
+    needs: package
+    steps:
+      - uses: actions/checkout@v3
+      - name: Getting manifest version
+        uses: notiz-dev/github-action-json-property@release
+        id: version
+        with:
+          path: "firefox.manifest.json"
+          prop_path: "version"
+      - name: Downloading crx
+        uses: actions/download-artifact@v3
+        with:
+          name: crx
+          path: ./
+      - name: Creating Release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{secrets.GITHUB_TOKEN}}"
+          prerelease: false
+          automatic_release_tag: "v${{steps.version.outputs.prop}}+firefox"
+          files: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.crx
+
