@@ -12,6 +12,9 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
       - name: Downloading built files
         uses: actions/download-artifact@v3
         with:
@@ -25,12 +28,16 @@ jobs:
         with:
           path: "firefox.manifest.json"
           prop_path: "version"
-      - name: Installing zip
-        run: sudo apt-get install zip -y
-      - name: Bundling extension
-        run: zip -r great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi icon out src LICENSE manifest.json
+      - name: Installing web-ext
+        run: npm install -g web-ext
+      - name: Preparing files for signing
+        run: mkdir xpi && cp -r icon out src LICENSE manifest.json
+      - name: Signing via web-ext
+        run: cd xpi && web-ext sign --api-key ${{secrets.JWT_ISSUER}} --api-secret ${{secrets.JWT_SECRET}}
+      - name: Renaming extension
+        run: cd web-ext-artifacts && mv *.xpi great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
       - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
           name: xpi
-          path: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
+          path: ./great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
