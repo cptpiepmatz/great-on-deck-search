@@ -12,30 +12,30 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v3
-      - name: downloading built files
+      - name: Downloading built files
         uses: actions/download-artifact@v3
         with:
           name: out
           path: out
-      - name: making chrome.manifest.json the main manifest
+      - name: Making chrome.manifest.json the main manifest
         run: cp chrome.manifest.json manifest.json
-      - name: downloading chrome
+      - name: Downloading chrome
         run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - name: installing chrome
+      - name: Installing chrome
         run: sudo apt install ./google-chrome-stable_current_amd64.deb -y
-      - name: getting manifest version
+      - name: Getting manifest version
         uses: notiz-dev/github-action-json-property@release
         id: version
         with:
           path: "chrome.manifest.json"
           prop_path: "version"
-      - name: creating output directory
+      - name: Creating output directory
         run: mkdir great-on-deck-search.v${{steps.version.outputs.prop}}
-      - name: copying files to output
+      - name: Copying files to output
         run: cp -r manifest.json out icon LICENSE great-on-deck-search.v${{steps.version.outputs.prop}}
-      - name: bundling extension
-        run: chrome --pack-extension=./great-on-deck-search.v${{steps.version.outputs.prop}}
-      - name: uploading extension artifact
+      - name: Bundling extension
+        run: google-chrome-stable --pack-extension=./great-on-deck-search.v${{steps.version.outputs.prop}}
+      - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
           name: crx

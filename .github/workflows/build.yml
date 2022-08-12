@@ -11,13 +11,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: installing Sass and Rollup
+      - name: Installing Sass and Rollup
         run: npm install -g sass rollup
-      - name: making build.sh executable
+      - name: Making build.sh executable
         run: chmod +x build.sh
-      - name: execute build.sh
+      - name: Execute build.sh
         run: ./build.sh
-      - name: uploading built files
+      - name: Uploading built files
         uses: actions/upload-artifact@v3
         with:
           name: out
