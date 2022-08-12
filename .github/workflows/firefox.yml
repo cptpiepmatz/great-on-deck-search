@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: xpi
-          path: great-on-deck-search.chrome.v${{steps.version.outputs.prop}}.xpi
+          path: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
