@@ -29,18 +29,13 @@ jobs:
           path: "chrome.manifest.json"
           prop_path: "version"
       - name: Creating output directory
-        run: mkdir great-on-deck-search.v${{steps.version.outputs.prop}}
+        run: mkdir crx
       - name: Copying files to output
-        run: cp -r manifest.json out icon LICENSE great-on-deck-search.v${{steps.version.outputs.prop}}
+        run: cp -r manifest.json out icon LICENSE crx
       - name: Installing CRX bundler
         run: npm install -g crx
       - name: Bundling extension
-        run: crx great-on-deck-search.v${{steps.version.outputs.prop}}
-      - name: Upload entire directory
-        uses: actions/upload-artifact@v3
-        with:
-          name: dir
-          path: ./
+        run: crx pack crx -o great-on-deck-search.v${{steps.version.outputs.prop}}.crx
       - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
