@@ -35,9 +35,9 @@ jobs:
       - name: Signing via web-ext
         run: cd xpi && web-ext sign --api-key ${{secrets.JWT_ISSUER}} --api-secret ${{secrets.JWT_SECRET}}
       - name: Renaming extension
-        run: cd web-ext-artifacts && mv *.xpi great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
+        run: mv xpi/web-ext-artifacts/*.xpi ./great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
       - name: Uploading extension artifact
         uses: actions/upload-artifact@v3
         with:
           name: xpi
-          path: ./great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
+          path: great-on-deck-search.firefox.v${{steps.version.outputs.prop}}.xpi
