@@ -2,23 +2,25 @@ import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
 import parser from "../common/parser.js";
 import trimHtml from "../common/trim_html.js";
+import dbEntry from "../common/proton_db/db_entry.js";
 
 /**
  * Creates an HTML element containing the proton db medal icon.
+ * @param {number | string} appId id of the app
  * @param {string} rating proton db rating
  * @return {Element}
  */
-function createElement(rating) {
+function createElement(appId, rating) {
   const html = trimHtml(`
-    <span class="sgodos front-page proton-db medal">
+    <a href="${dbEntry(appId)}" class="sgodos front-page proton-db medal">
       <span 
         class="sgodos proton-db proton-db-rating-${rating}"
       >
         ${rating.toUpperCase()}
       </span>
-    </span>
+    </a>
   `);
-  return parser.parseFromString(html, "text/html").querySelector("span");
+  return parser.parseFromString(html, "text/html").querySelector("a");
 }
 
 /**
@@ -32,7 +34,7 @@ async function protonDBFrontPage(appId, hero) {
   if (!data.proton_db || data.proton_db.tier === "pending") return;
   hero
     .querySelector(".platforms")
-    .prepend(createElement(data.proton_db.tier));
+    .prepend(createElement(appId, data.proton_db.tier));
 }
 
 export default protonDBFrontPage;
