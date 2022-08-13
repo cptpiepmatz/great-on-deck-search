@@ -12,7 +12,11 @@ import dbEntry from "../common/proton_db/db_entry.js";
  */
 function createElement(appId, rating) {
   const html = trimHtml(`
-    <a href="${dbEntry(appId)}" class="sgodos front-page proton-db medal">
+    <a 
+      href="${dbEntry(appId)}" 
+      target="_blank" 
+      class="sgodos front-page proton-db medal"
+    >
       <span 
         class="sgodos proton-db proton-db-rating-${rating}"
       >
