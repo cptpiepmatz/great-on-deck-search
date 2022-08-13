@@ -10,14 +10,14 @@ import parser from "../common/parser.js";
  * @param {SDHQRating} rating rating to display
  * @return {Element}
  */
-function createElement(rating) {
+function createElement(link, rating) {
   const html = trimHtml(`
-    <div class="sgodos front-page sdhq rating">
+    <a href="${link}" target="_blank" class="sgodos front-page sdhq rating">
       <img src="${logo}" height="30px">
       <img src="${ratingImg(rating)}" height="25px">
-    </div>
+    </a>
   `);
-  return parser.parseFromString(html, "text/html").querySelector("div");
+  return parser.parseFromString(html, "text/html").querySelector("a");
 }
 
 /**
@@ -29,7 +29,10 @@ function createElement(rating) {
 async function sdhqFrontPage(appId, hero) {
   const {data} = await requestBackground(RequestType.SDHQ, appId);
   if (!data.sdhq || !data.sdhq.rating) return;
-  hero.append(createElement(data.sdhq.rating.acf.sdhq_rating));
+  hero.append(createElement(
+    data.sdhq.rating.link,
+    data.sdhq.rating.acf.sdhq_rating
+  ));
 }
 
 export default sdhqFrontPage;
