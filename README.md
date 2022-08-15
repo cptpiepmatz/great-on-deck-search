@@ -6,7 +6,7 @@
 <h1 align="center">Show Great on Deck on Steam</h1>
 <h3 align="center">great-on-deck-search</h3>
 <p align="center">
-  <b>See what Games are verified for the Steam Deck and which Medal they have on ProtonDB in the Steam Store.</b>
+  <b>🏷️ See what games are verified for the Steam Deck and which medal they got on ProtonDB in the Steam Store.</b>
 </p>
 
 <br>
@@ -21,45 +21,57 @@
 </p>
 
 ## What it does
-By default, Steam does not show you the Steam Deck verification status on their 
+By default, Steam does not show you the Steam Deck verification status on their
 desktop website.
-This Browser Extension/Add-On fixes that by requesting the verification status 
+This Browser Extension/Add-On fixes that by requesting the verification status
 from [ProtonDB](https://www.protondb.com).
-While pulling the verification data from Steam directly, this also pulls the 
+While pulling the verification data from Steam directly, this also pulls the
 medals ProtonDB gives to certain games and displays them.
 
-Three pages do show now the medals and verification icons:
- - the store front page,
- - the app page per game
- - and the search results
+*Note: The extension uses session-based caching. 
+This should reduce the consecutive load times significantly.*
 
-Clicking on the medal on any of the pages will open the ProtonDB page for the 
-app in a new tab.
+### [Steam Deck HQ](https://steamdeckhq.com) Support
+Since Version 1.2.0 this extension also supports the
+[game reviews](https://steamdeckhq.com/game-reviews/)
+by the Steam Deck HQ team.
+This will show their ratings, their breakdowns and on the app page even the
+author of the review.
 
-*Note*: The requested data is locally cached for the session, this increases 
-load times and reduces redundant requests to ProtonDB and Steam.
 
-### Store Front Page
-The medals are shown on the featured element in the bottom right corner.
-<p align="center">
-  <img src="./showcase/front.png">
+## Supported Pages
+- Store Front Page
+- Search Results
+- App Page
+- Profile Games List
+- Wishlist
+
+<p float="left" align="middle">
+  <img src="./showcase/chrome/front.png" width="45%">
+  <img src="./showcase/chrome/search.png" width="45%">
+</p>
+<p float="left" align="middle">
+  <img src="./showcase/chrome/app_hero.png" width="45%">
+  <img src="./showcase/chrome/app_info.png" width="45%">
+</p>
+<p float="left" align="middle">
+  <img src="./showcase/chrome/profile_games.png" width="45%">
+  <img src="./showcase/chrome/wishlist.png" width="45%">
 </p>
 
-### App Page
-The medal is placed on top of the right side menu of the page.
-Also the verification status is moved up to see it more quickly.
+## Settings Menu
+Since Version 1.2.0 the extension supports a settings menu.
 <p align="center">
-  <img src="./showcase/app.png">
+  <img src="./showcase/chrome/settings.png">
 </p>
+This menu allows you to toggle certain features of the extension.
+A reload for the page is necessary in order to see the settings take effect.
 
-### Search Results
-The search results show the medal and verification status on every entry.
-<p align="center">
-  <img src="./showcase/search.gif">
-</p>
+## Changelog
+Changelog can be found [here](./CHANGELOG.md).
 
-## Missing Pages?
-If you need this feature added to another page, open an
+## Missing Features or Pages?
+If you need any feature added or support for another page, feel free to open up an
 [issue on GitHub](https://github.com/cptpiepmatz/great-on-deck-search/issues)
 and I see what I can do.
 
@@ -78,14 +90,36 @@ and I see what I can do.
 4. Head over to Steam and check the results.
 
 ### Manual Installation
-For the manual installation 
+#### Chrome and other Chromium-based Browsers
+1. Head over to the [releases tab](https://github.com/cptpiepmatz/great-on-deck-search/releases)
+2. Search for the highest version appended by `+chrome`
+3. Download the `.crx` file from it's assets
+4. Open your browser with the `.crx` file
+5. If step 4 did not work, unzip the `.crx` file and
+   [load it as unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked)
+6. Head over to Steam and check the results.
+
+#### Firefox
+1. Head over to the [releases tab](https://github.com/cptpiepmatz/great-on-deck-search/releases)
+2. Search for the highest version appended by `+firefox`
+3. Download the `.xpi` file from it's assets
+4. Open your browser with the `.xpi` file and install it
+5. Head over to Steam and check the results.
+
+### Compile it Yourself
+For compiling it yourself
 [clone or download the repo](https://github.com/cptpiepmatz/great-on-deck-search/archive/refs/heads/main.zip)
-and put it in a directory of your choosing, just make sure that you will need 
+and put it in a directory of your choosing, just make sure that you will need
 this directory even after installation.
 
 Chrome and Firefox do have different specifications for extensions/add-ons,
-therefore you need to rename corresponding manifest.json to simply 
+therefore you need to rename corresponding manifest.json to simply
 `manifest.json`.
+
+Build the files by using the
+[`build.sh`](https://github.com/cptpiepmatz/great-on-deck-search/blob/main/build.sh).
+It requires [Sass](https://sass-lang.com) and [Rollup](https://rollupjs.org)
+to be globally installed.
 
 Install it on:
 - [Chrome](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked)
@@ -93,8 +127,8 @@ Install it on:
 - [Opera, Step 4](https://dev.opera.com/extensions/basics/)
 
 ## Support
-If you're feeling extra generous today, head over to my 
+If you're feeling extra generous today, head over to my
 [Buy Me a Coffee page](https://www.buymeacoffee.com/cptpiepmatz)
 and do your thing.
-Or do it via [my PayPal.me page](https://paypal.me/CptPiepmatz), whatever you 
+Or do it via [my PayPal.me page](https://paypal.me/CptPiepmatz), whatever you
 prefer.
