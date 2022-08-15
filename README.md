@@ -31,6 +31,10 @@ medals ProtonDB gives to certain games and displays them.
 *Note: The extension uses session-based caching. 
 This should reduce the consecutive load times significantly.*
 
+### [SteamDB extension](https://steamdb.info/extension/) Compatibility
+Since Version 1.2.0 this extension works great in combination with the SteamDB 
+extension.
+
 ### [Steam Deck HQ](https://steamdeckhq.com) Support
 Since Version 1.2.0 this extension also supports the
 [game reviews](https://steamdeckhq.com/game-reviews/)
