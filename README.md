@@ -24,23 +24,23 @@
 By default, Steam does not show you the Steam Deck verification status on their
 desktop website.
 This Browser Extension/Add-On fixes that by requesting the verification status
-from [ProtonDB](https://www.protondb.com).
+from [ProtonDB](https://www.protondb.com) and puts them front and center on app pages for easy visibility.
 While pulling the verification data from Steam directly, this also pulls the
-medals ProtonDB gives to certain games and displays them.
+medals ProtonDB gives to certain games and displays them on the app page too.
 
 *Note: The extension uses session-based caching. 
 This should reduce the consecutive load times significantly.*
 
 ### [SteamDB extension](https://steamdb.info/extension/) Compatibility
-Since Version 1.2.0 this extension works great in combination with the SteamDB 
+Since Version 1.2.0, this extension works great in combination with the SteamDB 
 extension.
 
 ### [Steam Deck HQ](https://steamdeckhq.com) Support
-Since Version 1.2.0 this extension also supports the
+Since Version 1.2.0, this extension also supports the
 [game reviews](https://steamdeckhq.com/game-reviews/)
 by the Steam Deck HQ team.
-This will show their ratings, their breakdowns and on the app page even the
-author of the review.
+This will show their ratings, breakdowns, and the
+author of the review, on the app page.
 
 
 ## Supported Pages
@@ -77,7 +77,7 @@ Changelog can be found [here](./CHANGELOG.md).
 ## Missing Features or Pages?
 If you need any feature added or support for another page, feel free to open up an
 [issue on GitHub](https://github.com/cptpiepmatz/great-on-deck-search/issues)
-and I see what I can do.
+and I will see what I can do.
 
 ## Installation
 ### Store Installation
