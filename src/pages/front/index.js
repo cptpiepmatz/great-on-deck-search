@@ -14,9 +14,16 @@ function handleFrontPage() {
 
   async function tagHeroes() {
     observer.disconnect();
-    let settings = await fetchSettings(Setting.SDHQ, Setting.DECK_VERIFIED, Setting.PROTON_DB);
-    if (settings[Setting.SDHQ]) for (let item of carousel.children) {
-      sdhqFrontPage(item.dataset.dsAppid, item).catch(console.error);
+    let settings = await fetchSettings(
+      Setting.SDHQ,
+      Setting.DECK_VERIFIED,
+      Setting.PROTON_DB,
+      Setting.SDHQ_FIRST_LOOK
+    );
+    if (settings[Setting.SDHQ] || settings[Setting.SDHQ_FIRST_LOOK]) {
+      for (let item of carousel.children) {
+        sdhqFrontPage(item.dataset.dsAppid, item, settings).catch(console.error);
+      }
     }
     if (settings[Setting.DECK_VERIFIED]) for (let item of carousel.children) {
       deckVerifiedFrontPage(item.dataset.dsAppid, item).catch(console.error);

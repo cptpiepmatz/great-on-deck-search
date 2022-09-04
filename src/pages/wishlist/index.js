@@ -9,7 +9,12 @@ function handleWishlistPage() {
 
   let observer = new MutationObserver(() => applyBadges().catch(console.error));
 
-  let pSettings = fetchSettings(Setting.SDHQ, Setting.PROTON_DB, Setting.DECK_VERIFIED);
+  let pSettings = fetchSettings(
+    Setting.SDHQ,
+    Setting.PROTON_DB,
+    Setting.DECK_VERIFIED,
+    Setting.SDHQ_FIRST_LOOK
+  );
 
   let wishlistContainer = document.querySelector("#wishlist_ctn");
   observer.observe(wishlistContainer, {childList: true, subtree: true});
@@ -40,8 +45,10 @@ function handleWishlistPage() {
     if (settings[Setting.PROTON_DB]) for (let row of wishlistRows) {
       protonDBWishlistPage(row.dataset.appId, row).catch(console.error);
     }
-    if (settings[Setting.SDHQ]) for (let row of wishlistRows) {
-      sdhqWishlistPage(row.dataset.appId, row).catch(console.error);
+    if (settings[Setting.SDHQ] || settings[Setting.SDHQ_FIRST_LOOK]) {
+      for (let row of wishlistRows) {
+        sdhqWishlistPage(row.dataset.appId, row, settings).catch(console.error);
+      }
     }
   }
 }

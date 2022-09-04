@@ -12,7 +12,10 @@ function handleGamesPage() {
       "#games_list_row_container .gameListRow"
     );
     let settings = await fetchSettings(
-      Setting.SDHQ, Setting.DECK_VERIFIED, Setting.PROTON_DB
+      Setting.SDHQ,
+      Setting.DECK_VERIFIED,
+      Setting.PROTON_DB,
+      Setting.SDHQ_FIRST_LOOK
     );
 
     for (let row of rows) {
@@ -31,9 +34,11 @@ function handleGamesPage() {
       if (appId) deckVerifiedGamesPage(appId, row).catch(console.error);
     }
 
-    if (settings[Setting.SDHQ]) for (let row of rows) {
-      let appId = row.id.split("game_")[1];
-      if (appId) sdhqGamesPage(appId, row).catch(console.error);
+    if (settings[Setting.SDHQ] || settings[Setting.SDHQ_FIRST_LOOK]) {
+      for (let row of rows) {
+        let appId = row.id.split("game_")[1];
+        if (appId) sdhqGamesPage(appId, row, settings).catch(console.error);
+      }
     }
   }
 }

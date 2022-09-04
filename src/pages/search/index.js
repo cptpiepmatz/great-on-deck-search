@@ -9,7 +9,12 @@ function handleSearchResultsPage() {
 
   let observer = new MutationObserver(() => applyBadges().catch(console.error));
 
-  let pSettings = fetchSettings(Setting.SDHQ, Setting.PROTON_DB, Setting.DECK_VERIFIED);
+  let pSettings = fetchSettings(
+    Setting.SDHQ,
+    Setting.PROTON_DB,
+    Setting.DECK_VERIFIED,
+    Setting.SDHQ_FIRST_LOOK
+  );
 
   let searchResultContainer = document.querySelector("#search_result_container");
   observer.observe(searchResultContainer, {childList: true, subtree: true});
@@ -35,8 +40,10 @@ function handleSearchResultsPage() {
     if (settings[Setting.PROTON_DB]) for (let item of itemList) {
       protonDBSearchPage(item.dataset.dsAppid, item).catch(console.error);
     }
-    if (settings[Setting.SDHQ]) for (let item of itemList) {
-      sdhqSearchPage(item.dataset.dsAppid, item).catch(console.error);
+    if (settings[Setting.SDHQ] || settings[Setting.SDHQ_FIRST_LOOK]) {
+      for (let item of itemList) {
+        sdhqSearchPage(item.dataset.dsAppid, item, settings).catch(console.error);
+      }
     }
   }
 }

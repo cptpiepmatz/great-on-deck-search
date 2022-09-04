@@ -2,7 +2,8 @@
 export const Setting = {
   PROTON_DB: "toggleProtonDB",
   DECK_VERIFIED: "toggleDeckVerified",
-  SDHQ: "toggleSteamDeckHQ"
+  SDHQ: "toggleSteamDeckHQ",
+  SDHQ_FIRST_LOOK: "toggleSteamDeckHQFirstLook"
 }
 
 /**

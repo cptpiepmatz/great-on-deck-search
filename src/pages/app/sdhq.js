@@ -4,6 +4,7 @@ import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
 import trimHtml from "../common/trim_html.js";
 import parser from "../common/parser.js";
+import {Setting} from "../common/fetch_settings.js";
 
 /**
  * Creates an element for the sidebar displaying the SDHQ game review stars.
@@ -19,15 +20,21 @@ import parser from "../common/parser.js";
  *       }} cats rating categories
  * @param {string} authorName the author's name
  * @param {string} authorAvatar the url of the author's avatar
+ * @param {boolean} isFirstLook whether it's a "first look" review
  * @return {HTMLDivElement}
  */
-function createSidebarElement(link, rating, cats, authorName, authorAvatar) {
+function createSidebarElement(link, rating, cats, authorName, authorAvatar, isFirstLook) {
   const html = trimHtml(`
     <div class="block responsive_apppage_details_right sgodos app-page sdhq sidebar-element">
       <a href="${link}" target="_blank">
         <div class="sgodos app-page sdhq sidebar-logo">
           <img src="${logo}">
         </div>
+        ${isFirstLook ? `
+        <div class="sgodos app-page sdhq first-look">
+          <span data-tooltip-text="A SDHQ First Impression of the Game">FIRST LOOK</span>
+        </div>
+        ` : ""}
         <div class="sgodos app-page sdhq sidebar-review-row">
           <img 
             class="sgodos app-page sdhq star-rating"
@@ -81,17 +88,24 @@ function createNavButton(link) {
  * @param {number | string} appId id of the app
  * @param {Element} sidebar sidebar element of the app page
  * @param {Element} navbar navbar element of the app page
+ * @param {Record<Setting, boolean>} settings provided settings
  * @return {Promise<void>}
  */
-async function sdhqAppPage(appId, sidebar, navbar) {
+async function sdhqAppPage(appId, sidebar, navbar, settings) {
   const {data} = await requestBackground(RequestType.SDHQ, appId);
   if (!data.sdhq || !data.sdhq.rating || !data.sdhq.avatar) return;
+  const isFirstLook = data.sdhq.rating.acf.is_first_look;
+  if (!(
+    (isFirstLook && settings[Setting.SDHQ_FIRST_LOOK]) ||
+    (!isFirstLook && settings[Setting.SDHQ])
+  )) return;
   sidebar.prepend(createSidebarElement(
     data.sdhq.rating.link,
     data.sdhq.rating.acf.sdhq_rating,
     data.sdhq.rating.acf.sdhq_rating_categories,
     data.sdhq.rating.author_meta.display_name,
-    data.sdhq.avatar.mpp_avatar.full
+    data.sdhq.avatar.mpp_avatar.full,
+    data.sdhq.rating.acf.is_first_look
   ));
   navbar.prepend(createNavButton(data.sdhq.rating.link));
 }

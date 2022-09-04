@@ -13,10 +13,17 @@ function handleAppPage() {
   let gameMetaData = document.querySelector(".game_meta_data");
   let navbar = document.querySelector(".apphub_OtherSiteInfo");
 
-  fetchSettings(Setting.SDHQ, Setting.DECK_VERIFIED, Setting.PROTON_DB).then(async settings => {
+  fetchSettings(
+    Setting.SDHQ,
+    Setting.DECK_VERIFIED,
+    Setting.PROTON_DB,
+    Setting.SDHQ_FIRST_LOOK
+  ).then(async settings => {
     if (settings[Setting.DECK_VERIFIED]) await deckVerifiedAppPage();
     if (settings[Setting.PROTON_DB]) await protonDBAppPage(appId, gameMetaData, navbar);
-    if (settings[Setting.SDHQ]) await sdhqAppPage(appId, gameMetaData, navbar);
+    if (settings[Setting.SDHQ] || settings[Setting.SDHQ_FIRST_LOOK]) {
+      await sdhqAppPage(appId, gameMetaData, navbar, settings);
+    }
   });
 }
 

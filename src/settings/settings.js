@@ -1,5 +1,10 @@
 /** IDs of the toggles, will also be used as keys for the settings. */
-const toggleIds = ["toggleProtonDB", "toggleDeckVerified", "toggleSteamDeckHQ"];
+const toggleIds = [
+  "toggleProtonDB",
+  "toggleDeckVerified",
+  "toggleSteamDeckHQ",
+  "toggleSteamDeckHQFirstLook"
+];
 
 /**
  * Fetches the settings from the browser.

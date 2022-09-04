@@ -14,6 +14,27 @@
     width: 220px;
   }
 
+  &.first-look {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+
+    span {
+      font-weight: bold;
+      background-color: #D10E70;
+      font-size: 1.4em;
+      padding: {
+        top: 0.3em;
+        bottom: 0.3em;
+        right: 3em;
+        left: 3em;
+      }
+      border: white 2px solid;
+      border-radius: 3px;
+    }
+  }
+
   &.sidebar-review-row {
     display: flex;
     flex-direction: row;
@@ -45,5 +66,9 @@
     img {
       width: inherit;
     }
+  }
+
+  & *:hover {
+    color: white;
   }
 }

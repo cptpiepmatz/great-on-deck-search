@@ -41,7 +41,8 @@ port.onMessage.addListener(res => {
  *         controls: SDHQRating,
  *         battery: SDHQRating,
  *         score_breakdown: string
- *       }
+ *       },
+ *       is_first_look: boolean
  *     },
  *     link: string,
  *     author: number,

@@ -4,6 +4,7 @@ import parser from "../common/parser.js";
 import requestBackground from "../common/request_background.js";
 import RequestType from "../../background/common/request.js";
 import ratingImg from "../common/sdhq/rating_img.js";
+import {Setting} from "../common/fetch_settings.js";
 
 /**
  * Creates an element for the games list row displaying the SDHQ game rating.
@@ -37,11 +38,17 @@ function createElement(link, stars, cats) {
  * Places the SDHQ game rating on a game list row.
  * @param {number | string} appId id of the app
  * @param {Element} row row element to inject the review into
+ * @param {Record<Setting, boolean>} settings provided settings
  * @return {Promise<void>}
  */
-async function sdhqGamesPage(appId, row) {
+async function sdhqGamesPage(appId, row, settings) {
   let {data} = await requestBackground(RequestType.SDHQ, appId);
   if (!data?.sdhq?.rating?.acf) return;
+  const isFirstLook = data.sdhq.rating.acf.is_first_look;
+  if (!(
+    (isFirstLook && settings[Setting.SDHQ_FIRST_LOOK]) ||
+    (!isFirstLook && settings[Setting.SDHQ])
+  )) return;
   row.querySelector(".sgodos.games-page.extra").append(createElement(
     data.sdhq.rating.link,
     data.sdhq.rating.acf.sdhq_rating,
