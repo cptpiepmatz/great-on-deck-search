@@ -1,3 +1,13 @@
+# v1.2.2 [firefox][firefox-v1.2.2] [chrome][chrome-v1.2.2] (2022-09-04)
+[firefox-v1.2.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.2%2Bfirefox
+[chrome-v1.2.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.2%2Bchrome
+
+### 🛠️ Improvements
+
+- SteamDeckHQ "First Look" game reviews are now in the settings adjustable and 
+  indicated on the app page
+  ([14f7165](https://github.com/cptpiepmatz/great-on-deck-search/commit/14f7165cd05fe7202a27d174307c9e8d2cd1cf7c))
+
 # v1.2.1 [firefox][firefox-v1.2.1] [chrome][chrome-v1.2.1] (2022-08-13)
 [firefox-v1.2.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.1%2Bfirefox
 [chrome-v1.2.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.1%2Bchrome
