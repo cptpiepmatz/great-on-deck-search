@@ -10,7 +10,8 @@
     {
       "matches": [
         "https://store.steampowered.com/*",
-        "https://steamcommunity.com/id/*/games*"
+        "https://steamcommunity.com/id/*/games*",
+        "https://steamcommunity.com/profiles/*/games*"
       ],
       "run_at": "document_end",
       "js": ["out/pages.bundle.js"],
