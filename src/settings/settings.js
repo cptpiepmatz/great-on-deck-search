@@ -19,6 +19,9 @@ function fetchSettings(...keys) {
 
 let settings = fetchSettings(...toggleIds);
 document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("manifestVersion").innerText =
+    chrome.runtime.getManifest().version;
+
   // fetches all the settings and defaults to true for every key
   settings = Object.assign(
     Object.fromEntries(toggleIds.map(id => [id, true])),
