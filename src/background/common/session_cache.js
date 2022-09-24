@@ -43,13 +43,13 @@ class SessionCache {
     let mapResult = this.cache.get(key);
     if (mapResult) return mapResult;
     if (!chrome.storage.session) return undefined;
-    let storageResult = await chrome.storage.session.get(this.storageKey(key));
-    // Beactuse chrome.storage.session.get return value is object with items in their key-value mappings
-    // So here need to get the specific value according to the key
-    const storageResultValue = storageResult?.[this.storageKey(key)];
-    if (storageResultValue) {
-      this.cache.set(key, storageResultValue);
-      return storageResultValue;
+    // the fetched data represents the filtered cache,
+    // therefore the value needs to be extracted from the fetched data
+    let storageResult = (await chrome.storage.session.get(this.storageKey(key)))
+      ?.[this.storageKey(key)];
+    if (storageResult) {
+      this.cache.set(key, storageResult);
+      return storageResult;
     }
     return undefined;
   }
