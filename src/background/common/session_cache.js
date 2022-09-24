@@ -43,8 +43,11 @@ class SessionCache {
     let mapResult = this.cache.get(key);
     if (mapResult) return mapResult;
     if (!chrome.storage.session) return undefined;
-    let storageResult = await chrome.storage.session.get(this.storageKey(key));
-    if (storageResult && Object.keys(storageResult).length) {
+    // the fetched data represents the filtered cache,
+    // therefore the value needs to be extracted from the fetched data
+    let storageResult = (await chrome.storage.session.get(this.storageKey(key)))
+      ?.[this.storageKey(key)];
+    if (storageResult) {
       this.cache.set(key, storageResult);
       return storageResult;
     }
