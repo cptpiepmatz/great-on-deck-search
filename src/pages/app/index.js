@@ -32,7 +32,8 @@ function handleAppPage() {
  * @return {boolean}
  */
 function testAppPage() {
-  return document.location.pathname.includes("/app/");
+  return !document.location.pathname.includes("/agecheck/") &&
+    document.location.pathname.includes("/app/");
 }
 
 export default handleAppPage;
