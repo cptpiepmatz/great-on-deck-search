@@ -1,3 +1,23 @@
+# v1.2.3 [firefox][firefox-v1.2.3] [chrome][chrome-v1.2.3] (2022-09-24)
+[firefox-v1.2.3]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.3%2Bfirefox
+[chrome-v1.2.3]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.3%2Bchrome
+
+### 🛠️ Improvements
+
+- Games list pages of profiles without custom id now work too 
+  ([#15](https://github.com/cptpiepmatz/great-on-deck-search/pull/15))
+- Added version tag with link to changelog to settings page
+  ([188cb8c](https://github.com/cptpiepmatz/great-on-deck-search/commit/188cb8c2e69bdb63a7c5408b85a830b01389f66b))
+
+### 🐛 Bug Fixes
+
+- Data from the session cache was read improperly 
+  ([#17](https://github.com/cptpiepmatz/great-on-deck-search/pull/17))
+- Attempted to use a disconnected port object
+  ([ca78181](https://github.com/cptpiepmatz/great-on-deck-search/commit/ca781810a5f5952ec35360d468b35d6ff8f7ddbb))
+- Age check page was trying to use app page handler
+  ([547baa4](https://github.com/cptpiepmatz/great-on-deck-search/commit/547baa4a5a8948a48db9192d6693f1b6885ee326))
+
 # v1.2.2 [firefox][firefox-v1.2.2] [chrome][chrome-v1.2.2] (2022-09-04)
 [firefox-v1.2.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.2%2Bfirefox
 [chrome-v1.2.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.2%2Bchrome
