@@ -11,9 +11,10 @@ import {Setting} from "../common/fetch_settings.js";
  * @param {string} link link to the game review
  * @param {SDHQRating} stars the rating of the review
  * @param {object} cats the breakdown of the review rating
+ * @param {boolean} isBestOnDeck whether the game is marked as "Best on Deck"
  * @return {[HTMLDivElement, HTMLDivElement]}
  */
-function createElement(link, stars, cats) {
+function createElement(link, stars, cats, isBestOnDeck) {
   const labelHtml = trimHtml(`
     <div class="sgodos wishlist-page sdhq label">
       SDHQ BUILD SCORE:
@@ -22,6 +23,9 @@ function createElement(link, stars, cats) {
   const valueHtml = trimHtml(`
     <div class="sgodos wishlist-page sdhq value">
       <a href="${link}" target="_blank">
+        ${isBestOnDeck ? `
+        <p>Best on Deck</p>
+        ` : `
         <img 
           src="${ratingImg(stars)}" 
           data-tooltip-text="
@@ -32,6 +36,7 @@ function createElement(link, stars, cats) {
             Battery: ${cats.battery};
           "
         >
+        `}
       </a>
     </div>
   `);
@@ -61,7 +66,8 @@ async function sdhqWishlistPage(appId, row, settings) {
   let [label, value] = createElement(
     data.sdhq.rating.link,
     data.sdhq.rating.acf.sdhq_rating,
-    data.sdhq.rating.acf.sdhq_rating_categories
+    data.sdhq.rating.acf.sdhq_rating_categories,
+    data.sdhq.rating.acf.best_on_deck
   );
   row.querySelector(".stats").append(label, value);
 }

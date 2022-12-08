@@ -2,4 +2,15 @@
   &.stars img {
     height: 14px;
   }
+
+  &.bod p {
+    background: rgb(255,199,0);
+    background: linear-gradient(127deg,rgba(255,199,0,1) 0%,rgba(224,26,109,1) 50%,rgba(33,109,182,1) 100%);
+    width: fit-content;
+    padding: 0 0.3em;
+    border-radius: 2px;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
 }

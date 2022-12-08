@@ -2,4 +2,15 @@
   &.value img {
     height: 14px;
   }
+
+  &.value p {
+    background: rgb(255,199,0);
+    background: linear-gradient(127deg,rgba(255,199,0,1) 0%,rgba(224,26,109,1) 50%,rgba(33,109,182,1) 100%);
+    width: fit-content;
+    padding: 0 0.3em;
+    border-radius: 3px;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+  }
 }

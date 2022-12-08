@@ -11,13 +11,17 @@ import {Setting} from "../common/fetch_settings.js";
  * @param {string} link url of the game review
  * @param {SDHQRating} stars rating of the game
  * @param {object} cats rating breakdown
+ * @param {boolean} isBestOnDeck whether the game is marked as "Best on Deck"
  * @return {HTMLAnchorElement}
  */
-function createElement(link, stars, cats) {
+function createElement(link, stars, cats, isBestOnDeck) {
   const html = trimHtml(`
     <a class="sgodos games-page sdhq review-row" href="${link}" target="_blank">
       <img class="sgodos games-page sdhq logo" src="${logo}">
       <span>:</span>
+      ${isBestOnDeck ? `
+      <p class="sgodos games-page sdhq bod">Best on Deck</p>
+      ` : `
       <img 
         class="sgodos games-page sdhq stars" 
         src="${ratingImg(stars)}"
@@ -29,6 +33,7 @@ function createElement(link, stars, cats) {
           Battery: ${cats.battery};
         "
       >
+      `}
     </a>
   `);
   return parser.parseFromString(html, "text/html").querySelector("a");
@@ -52,7 +57,8 @@ async function sdhqGamesPage(appId, row, settings) {
   row.querySelector(".sgodos.games-page.extra").append(createElement(
     data.sdhq.rating.link,
     data.sdhq.rating.acf.sdhq_rating,
-    data.sdhq.rating.acf.sdhq_rating_categories
+    data.sdhq.rating.acf.sdhq_rating_categories,
+    data.sdhq.rating.acf.best_on_deck
   ));
 }
 

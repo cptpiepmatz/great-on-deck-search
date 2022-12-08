@@ -21,9 +21,18 @@ import {Setting} from "../common/fetch_settings.js";
  * @param {string} authorName the author's name
  * @param {string} authorAvatar the url of the author's avatar
  * @param {boolean} isFirstLook whether it's a "first look" review
+ * @param {boolean} isBestOnDeck whether the game is marked as "Best on Deck"
  * @return {HTMLDivElement}
  */
-function createSidebarElement(link, rating, cats, authorName, authorAvatar, isFirstLook) {
+function createSidebarElement(
+  link,
+  rating,
+  cats,
+  authorName,
+  authorAvatar,
+  isFirstLook,
+  isBestOnDeck
+) {
   const html = trimHtml(`
     <div class="block responsive_apppage_details_right sgodos app-page sdhq sidebar-element">
       <a href="${link}" target="_blank">
@@ -57,6 +66,13 @@ function createSidebarElement(link, rating, cats, authorName, authorAvatar, isFi
           </picture>
         </div>
       </a>
+      ${isBestOnDeck ? `
+      <a target="_blank" href="${link}">
+        <div class="sgodos app-page sdhq bod">
+          <p>Best on Deck</p>
+        </div>
+      </a>
+      ` : ""}
     </div>
   `);
   return parser.parseFromString(html, "text/html").querySelector("div");
@@ -105,7 +121,8 @@ async function sdhqAppPage(appId, sidebar, navbar, settings) {
     data.sdhq.rating.acf.sdhq_rating_categories,
     data.sdhq.rating.author_meta.display_name,
     data.sdhq.avatar.mpp_avatar.full,
-    data.sdhq.rating.acf.is_first_look
+    data.sdhq.rating.acf.is_first_look,
+    data.sdhq.rating.acf.best_on_deck
   ));
   navbar.prepend(createNavButton(data.sdhq.rating.link));
 }

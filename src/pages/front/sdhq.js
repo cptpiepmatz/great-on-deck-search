@@ -8,11 +8,17 @@ import {Setting} from "../common/fetch_settings.js";
 
 /**
  * Creates an HTML element containing the SDHQ logo and rating.
+ * @param {string} link url of the game review
  * @param {SDHQRating} rating rating to display
+ * @param {boolean} isBestOnDeck whether the game is marked as "Best on Deck"
  * @return {Element}
  */
-function createElement(link, rating) {
-  const html = trimHtml(`
+function createElement(link, rating, isBestOnDeck) {
+  const html = trimHtml(isBestOnDeck ? `
+    <a href="${link}" target="_blank" class="sgodos front-page sdhq bod">
+      <p>Best on Deck</p>
+    </a>
+  ` : `
     <a href="${link}" target="_blank" class="sgodos front-page sdhq rating">
       <img src="${logo}" height="30px">
       <img src="${ratingImg(rating)}" height="25px">
@@ -38,7 +44,8 @@ async function sdhqFrontPage(appId, hero, settings) {
   )) return;
   hero.append(createElement(
     data.sdhq.rating.link,
-    data.sdhq.rating.acf.sdhq_rating
+    data.sdhq.rating.acf.sdhq_rating,
+    data.sdhq.rating.acf.best_on_deck
   ));
 }
 

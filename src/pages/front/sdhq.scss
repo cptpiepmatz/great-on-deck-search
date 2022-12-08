@@ -1,14 +1,27 @@
-.sgodos.front-page.sdhq.rating {
+.sgodos.front-page.sdhq {
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 0 10px 0 0;
-  padding: 2px;
   display: flex;
   align-content: center;
   align-items: center;
+  padding: 2px;
+
+  &.rating {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  &.bod {
+    background: rgb(255,199,0);
+    background: linear-gradient(127deg,rgba(255,199,0,1) 0%,rgba(224,26,109,1) 50%,rgba(33,109,182,1) 100%);
+    font-size: 1.6em;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.2em;
+    color: white;
+  }
 }
 
 @media (max-width: 910px) {

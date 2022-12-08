@@ -9,10 +9,15 @@ import {Setting} from "../common/fetch_settings.js";
  * Creates an element for the search results row displaying the SDHQ game review rating.
  * @param {string} link link to the game review
  * @param {SDHQRating} stars the rating of the review
+ * @param {boolean} isBestOnDeck whether the game is marked as "Best on Deck"
  * @return {HTMLAnchorElement}
  */
-function createElement(link, stars) {
-  const html = trimHtml(`
+function createElement(link, stars, isBestOnDeck) {
+  const html = trimHtml(isBestOnDeck ? `
+    <a href="${link}" target="_blank" class="sgodos search-page sdhq bod">
+      <p>Best on Deck</p>
+    </a>
+  ` : `
     <a href="${link}" target="_blank" class="sgodos search-page sdhq stars">
         <img src="${ratingImg(stars)}">
     </a>
@@ -39,7 +44,11 @@ async function sdhqSearchPage(appId, row, settings) {
 
   row
     .querySelector(".col.search_released")
-    .appendChild(createElement(data.sdhq.rating.link, data.sdhq.rating.acf.sdhq_rating))
+    .appendChild(createElement(
+      data.sdhq.rating.link,
+      data.sdhq.rating.acf.sdhq_rating,
+      data.sdhq.rating.acf.best_on_deck
+    ))
 }
 
 export default sdhqSearchPage;

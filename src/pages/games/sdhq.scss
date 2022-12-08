@@ -18,5 +18,18 @@
       padding-left: 4px;
       height: 20px;
     }
+
+    p.bod {
+      background: rgb(255,199,0);
+      background: linear-gradient(127deg,rgba(255,199,0,1) 0%,rgba(224,26,109,1) 50%,rgba(33,109,182,1) 100%);
+      width: fit-content;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 1.2em;
+      margin-left: 0.2em;
+    }
   }
 }
