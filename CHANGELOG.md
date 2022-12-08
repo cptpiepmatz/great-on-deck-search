@@ -1,3 +1,12 @@
+# v1.3.0 [firefox][firefox-v1.3.0] [chrome][chrome-v1.3.0] (2022-12-08)
+[firefox-v1.3.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.0%2Bfirefox
+[chrome-v1.3.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.0%2Bchrome
+
+### ✨ Features
+
+- Added support for SDHQ's "Best on Deck" badge
+  ([64dc703](https://github.com/cptpiepmatz/great-on-deck-search/commit/64dc7031c86fdf2914ec691fe2dec0b407331bd4))
+
 # v1.2.3 [firefox][firefox-v1.2.3] [chrome][chrome-v1.2.3] (2022-09-24)
 [firefox-v1.2.3]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.3%2Bfirefox
 [chrome-v1.2.3]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.3%2Bchrome
