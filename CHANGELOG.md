@@ -1,3 +1,13 @@
+# v1.3.1 [firefox][firefox-v1.3.1] [chrome][chrome-v1.3.1] (2023-01-16)
+[firefox-v1.3.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.1%2Bfirefox
+[chrome-v1.3.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.1%2Bchrome
+
+### 🐛 Bug Fixes
+
+- Hide plugin injections from wishlist in compact view
+  ([#19](https://github.com/cptpiepmatz/great-on-deck-search/pull/19))
+
+
 # v1.3.0 [firefox][firefox-v1.3.0] [chrome][chrome-v1.3.0] (2022-12-08)
 [firefox-v1.3.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.0%2Bfirefox
 [chrome-v1.3.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.0%2Bchrome
