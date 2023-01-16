@@ -8,19 +8,25 @@
   align-items: center;
 }
 
-.wishlist_row .content {
-  height: 148px;
+#wishlist_ctn:not(.compact) {
+  .wishlist_row .content {
+    height: 148px;
 
-  .title {
-    flex-grow: 1;
-    margin: 0;
-  }
-
-  .mid_container {
-    .stats {
+    .title {
+      flex-grow: 1;
       margin: 0;
     }
+
+    .mid_container {
+      .stats {
+        margin: 0;
+      }
+    }
   }
+}
+
+#wishlist_ctn.compact .sgodos.wishlist-page.sdhq {
+  display: none;
 }
 
 .sgodos.wishlist-page.separator {
