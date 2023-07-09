@@ -1,3 +1,13 @@
+# v1.4.0 [firefox][firefox-v1.4.0] [chrome][chrome-v1.4.0] (2023-07-09)
+[firefox-v1.4.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.0%2Bfirefox
+[chrome-v1.4.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.0%2Bchrome
+
+### ✨ Features
+
+- Added a fallback verification status if Steam does not send one on app page
+  ([d869a76](https://github.com/cptpiepmatz/great-on-deck-search/commit/d869a764b104f590b8db40ff57e3f78377934d40))
+
+
 # v1.3.1 [firefox][firefox-v1.3.1] [chrome][chrome-v1.3.1] (2023-01-16)
 [firefox-v1.3.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.1%2Bfirefox
 [chrome-v1.3.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.3.1%2Bchrome
@@ -16,6 +26,7 @@
 
 - Added support for SDHQ's "Best on Deck" badge
   ([64dc703](https://github.com/cptpiepmatz/great-on-deck-search/commit/64dc7031c86fdf2914ec691fe2dec0b407331bd4))
+
 
 # v1.2.3 [firefox][firefox-v1.2.3] [chrome][chrome-v1.2.3] (2022-09-24)
 [firefox-v1.2.3]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.3%2Bfirefox
@@ -37,6 +48,7 @@
 - Age check page was trying to use app page handler
   ([547baa4](https://github.com/cptpiepmatz/great-on-deck-search/commit/547baa4a5a8948a48db9192d6693f1b6885ee326))
 
+
 # v1.2.2 [firefox][firefox-v1.2.2] [chrome][chrome-v1.2.2] (2022-09-04)
 [firefox-v1.2.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.2%2Bfirefox
 [chrome-v1.2.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.2%2Bchrome
@@ -47,6 +59,7 @@
   indicated on the app page
   ([14f7165](https://github.com/cptpiepmatz/great-on-deck-search/commit/14f7165cd05fe7202a27d174307c9e8d2cd1cf7c))
 
+
 # v1.2.1 [firefox][firefox-v1.2.1] [chrome][chrome-v1.2.1] (2022-08-13)
 [firefox-v1.2.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.1%2Bfirefox
 [chrome-v1.2.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.1%2Bchrome
@@ -54,6 +67,7 @@
 ### 🐛 Bug Fixes
 
 - Front page was missing clickable medals and game reviews
+
 
 # v1.2.0 [firefox][firefox-v1.2.0] [chrome][chrome-v1.2.0] (2022-08-12)
 [firefox-v1.2.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.2.0%2Bfirefox
