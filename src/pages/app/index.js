@@ -19,7 +19,7 @@ function handleAppPage() {
     Setting.PROTON_DB,
     Setting.SDHQ_FIRST_LOOK
   ).then(async settings => {
-    if (settings[Setting.DECK_VERIFIED]) await deckVerifiedAppPage();
+    if (settings[Setting.DECK_VERIFIED]) await deckVerifiedAppPage(appId, gameMetaData);
     if (settings[Setting.PROTON_DB]) await protonDBAppPage(appId, gameMetaData, navbar);
     if (settings[Setting.SDHQ] || settings[Setting.SDHQ_FIRST_LOOK]) {
       await sdhqAppPage(appId, gameMetaData, navbar, settings);
