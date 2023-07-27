@@ -1,3 +1,12 @@
+# v1.4.1 [firefox][firefox-v1.4.1] [chrome][chrome-v1.4.1] (2023-07-27)
+[firefox-v1.4.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.1%2Bfirefox
+[chrome-v1.4.1]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.1%2Bchrome
+
+## 🤝 Compatibility
+
+- Added a css setting to fix navbar buttons being overwritten by Augmented Steam Extension
+  ([cfc40dd](https://github.com/cptpiepmatz/great-on-deck-search/commit/cfc40ddcce6f9934897e9e29500e173584dc6b29))
+
 # v1.4.0 [firefox][firefox-v1.4.0] [chrome][chrome-v1.4.0] (2023-07-09)
 [firefox-v1.4.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.0%2Bfirefox
 [chrome-v1.4.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.0%2Bchrome
