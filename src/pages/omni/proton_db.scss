@@ -1,0 +1,11 @@
+.sgodos.omni {
+  .app_tag.proton-db {
+    outline-offset: -1px;
+
+    &.proton-db-rating-platinum,
+    &.proton-db-rating-gold {
+      outline: #666 solid 1px;
+      color: #555
+    }
+  }
+}
