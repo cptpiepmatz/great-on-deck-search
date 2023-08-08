@@ -1,3 +1,13 @@
+# v1.5.0 [firefox][firefox-v1.5.0] [chrome][chrome-v1.5.0] (2023-08-08)
+[firefox-v1.5.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.5.0%2Bfirefox
+[chrome-v1.5.0]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.5.0%2Bchrome
+
+### ✨ Features
+
+- Added ProtonDB and deck verification status into game hover boxes, mainly on front page
+  ([5303f01](https://github.com/cptpiepmatz/great-on-deck-search/commit/5303f01293fa27e76fe368935d366c310f5adec9))
+
+
 # v1.4.2 [firefox][firefox-v1.4.2] [chrome][chrome-v1.4.1] (2023-07-30)
 [firefox-v1.4.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.2%2Bfirefox
 [chrome-v1.4.2]: https://github.com/cptpiepmatz/great-on-deck-search/releases/tag/v1.4.2%2Bchrome
