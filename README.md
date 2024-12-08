@@ -11,14 +11,13 @@
 
 <br>
 
-<p align="center">
-  <a href="https://chrome.google.com/webstore/detail/show-great-on-deck-on-ste/olagniaikhbmpdgghoifgloijcndfled">
-    <img alt="Chrome Web Store Version" src="https://img.shields.io/chrome-web-store/v/olagniaikhbmpdgghoifgloijcndfled?logo=google-chrome&style=for-the-badge"/>
-  </a>
-  <a href="https://addons.mozilla.org/firefox/addon/show-great-on-deck-on-steam/">
-    <img alt="Mozilla Add-On Version" src="https://img.shields.io/amo/v/show-great-on-deck-on-steam?color=orange&logo=firefox&style=for-the-badge"/>
-  </a>
-</p>
+<div align="center">
+
+  [![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/olagniaikhbmpdgghoifgloijcndfled?logo=google-chrome&style=for-the-badge)](https://chrome.google.com/webstore/detail/show-great-on-deck-on-ste/olagniaikhbmpdgghoifgloijcndfled)
+  [![Mozilla Add-On Version](https://img.shields.io/amo/v/show-great-on-deck-on-steam?color=orange&logo=firefox&style=for-the-badge)](https://addons.mozilla.org/firefox/addon/show-great-on-deck-on-steam/)
+
+</div>
+
 
 ## What it does
 By default, Steam does not show you the Steam Deck verification status on their
